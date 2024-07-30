@@ -22,8 +22,12 @@ zinit light-mode for \
 ### End of Zinit's installer chunk
 
 ### Homebrew stuff
-#eval "$(/bin/brew shellenv)"
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+if [[ "$(uname)" == "Linux" ]]; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    #eval "$(/bin/brew shellenv)"
+elif [[ "$(uname)" == "Darwin" ]]; then
+    eval "$(/usr/local/bin/brew shellenv)"
+fi
 ###
 
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/zen.toml)"
