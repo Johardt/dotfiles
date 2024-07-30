@@ -1,0 +1,13 @@
+import = ["~/.config/alacritty/current_theme.toml"]
+
+[window]
+dimensions = { columns = 120, lines = 40}
+
+[font]
+normal = { family = "FiraCode Nerd Font", style = "Regular"}
+size = 12
+
+[keyboard]
+bindings = [
+    {key = "T", mods = "Control|Shift", command = "/home/joel/.config/alacritty/switch_theme.sh"},
+]
