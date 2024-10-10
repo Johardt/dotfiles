@@ -12,7 +12,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "pyright", "tsserver" }, -- Add the language servers you want to use
+        ensure_installed = { "lua_ls" }, -- Add the language servers you want to use
       })
     end,
   },
