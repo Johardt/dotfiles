@@ -12,7 +12,26 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "pyright", "tsserver" }, -- Add the language servers you want to use
+        ensure_installed = { "lua_ls" }, -- Add the language servers you want to use
+        automatic_installation = true,
+      })
+
+      require("mason-lspconfig").setup_handlers({
+        function(server_name)
+          require("lspconfig")[server_name].setup({})
+        end,
+        -- Example: Custom setup for lua_ls
+        ["lua_ls"] = function()
+          require("lspconfig").lua_ls.setup {
+            settings = {
+              Lua = {
+                diagnostics = {
+                  globals = { "vim" },
+                },
+              },
+            },
+          }
+        end,
       })
     end,
   },
@@ -23,8 +42,6 @@ return {
       local lspconfig = require("lspconfig")
       -- Setup language servers
       lspconfig.lua_ls.setup{}
-      lspconfig.pyright.setup{}
-      lspconfig.tsserver.setup{}
       -- Global mappings
       vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
       vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
