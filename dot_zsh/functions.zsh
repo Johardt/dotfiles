@@ -48,12 +48,21 @@ _brew_add() {
   
   # Add each package to the Brewfile
   for pkg in "${packages[@]}"; do
+    # Check if package already exists in Brewfile
+    if rg -q "^(brew|cask|mas|vscode)\s+\"$pkg\"" "$brewfile" 2>/dev/null; then
+      echo "  - $pkg already exists in $brewfile, skipping..."
+      continue
+    fi
+    
     echo "  - Adding $pkg..."
     if ! brew bundle add --file="$brewfile" --"$type" "$pkg"; then
       echo "❌ Failed to add $pkg"
       return 1
     fi
   done
+
+  # Create a temporary file with unique entries while preserving order
+  awk '!seen[$0]++' "$brewfile" > "$brewfile.tmp" && command mv "$brewfile.tmp" "$brewfile"
 
   echo "🔧 Installing new Brewfile dependencies..."
   # Capture install summary
@@ -65,7 +74,7 @@ _brew_add() {
 
   # Only show summary of installed items
   local installed
-  installed=$(echo "$output" | grep -E '^Using ' -v | grep -E 'Installing ')
+  installed=$(echo "$output" | rg -v '^Using ' | rg 'Installing ')
 
   if [[ -z "$installed" ]]; then
     echo "✅ No new packages were installed."
@@ -89,9 +98,9 @@ _brew_remove() {
     return 1
   fi
 
-  if grep -qE "(brew|cask)\s+\"$pkg\"" "$brewfile"; then
+  if rg -q "(brew|cask)\s+\"$pkg\"" "$brewfile"; then
     echo "➖ Removing $pkg from $brewfile..."
-    sed -i '' "/\(brew\|cask\)\s\+\"$pkg\"/d" "$brewfile"
+    sed -i '' "/^brew \"$pkg\"/d; /^cask \"$pkg\"/d" "$brewfile"
   else
     echo "⚠️  $pkg not found in $brewfile"
   fi
