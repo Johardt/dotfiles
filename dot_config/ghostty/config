@@ -2,8 +2,7 @@ theme = dark:xcodedark,light:xcodelight
 font-family = "JetBrainsMono Nerd Font"
 
 # Font settings
-font-size = 14
-font-thicken = true
+font-size = 13
 
 # Window settings
 window-decoration = true
@@ -14,59 +13,24 @@ confirm-close-surface = false
 # Performance
 unfocused-split-opacity = 0.8
 
-# Keybinds for enhanced terminal experience
-# FZF and search bindings (these work with your zsh config)
-keybind = cmd+r=text:\x12  # Ctrl+R for fzf history search
-keybind = cmd+t=text:\x14  # Ctrl+T for fzf file search  
-keybind = cmd+e=text:\x1bc  # Alt+C for fzf directory change
+# Hide login message by running clear on startup
+shell-integration = zsh
+command = zsh -c "clear; exec zsh"
 
 # Text navigation (word jumps)
-keybind = alt+left=text:\x1bb   # Alt+Left for backward-word
-keybind = alt+right=text:\x1bf  # Alt+Right for forward-word
-keybind = cmd+left=text:\x01    # Cmd+Left for beginning-of-line
-keybind = cmd+right=text:\x05   # Cmd+Right for end-of-line
-
-# Better copy/paste
-keybind = cmd+c=copy_to_clipboard
-keybind = cmd+v=paste_from_clipboard
-
-# Tab management
-keybind = cmd+t=new_tab
-keybind = cmd+w=close_surface
-keybind = cmd+shift+left=previous_tab
-keybind = cmd+shift+right=next_tab
-keybind = cmd+1=goto_tab:1
-keybind = cmd+2=goto_tab:2
-keybind = cmd+3=goto_tab:3
-keybind = cmd+4=goto_tab:4
-keybind = cmd+5=goto_tab:5
-
-# Split management
-keybind = cmd+d=new_split:right
-keybind = cmd+shift+d=new_split:down
-keybind = cmd+shift+w=close_split
-keybind = cmd+shift+h=goto_split:left
-keybind = cmd+shift+j=goto_split:down
-keybind = cmd+shift+k=goto_split:up
-keybind = cmd+shift+l=goto_split:right
-
-# Font size adjustment
-keybind = cmd+plus=increase_font_size:1
-keybind = cmd+minus=decrease_font_size:1
-keybind = cmd+zero=reset_font_size
+keybind = alt+left=text:\x1bb
+keybind = alt+right=text:\x1bf
+keybind = cmd+left=text:\x01
+keybind = cmd+right=text:\x05
 
 # Clear screen
-keybind = cmd+k=text:\x0c  # Clear screen
+keybind = cmd+k=text:\x0c
 
-# Quick commands for your enhanced zsh
-keybind = cmd+shift+r=text:reload\x0d  # Reload zsh config
-keybind = cmd+shift+g=text:git status\x0d  # Quick git status
-keybind = cmd+shift+l=text:ll\x0d  # Quick directory listing
+# Quick commands for enhanced zsh
+keybind = cmd+shift+r=text:reload\x0d
+keybind = cmd+shift+g=text:git\ status\x0d
+keybind = cmd+shift+l=text:ll\x0d
 
 # Search in terminal
 keybind = cmd+f=text:/
 keybind = cmd+shift+f=text:?
-
-# Undo/Redo (for command line editing)
-keybind = cmd+z=text:\x1f  # Undo
-keybind = cmd+shift+z=text:\x18\x1f  # Redo
