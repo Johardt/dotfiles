@@ -1,2 +1,4 @@
 source ~/.zsh/functions.zsh
 source ~/.zsh/aliases.zsh
+
+export EDITOR=nvim

@@ -1,10 +1,11 @@
-# Manage your dotfiles across multiple diverse machines, securely
 brew "chezmoi"
-# Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
-# Gecko based web browser
 cask "zen"
 brew "starship"
 cask "1password"
 cask "1password-cli"
 cask "raycast"
+cask "visual-studio-code"
+brew "neovim"
+brew "dockutil"
+brew "duti"
