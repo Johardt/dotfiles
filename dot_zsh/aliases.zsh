@@ -7,10 +7,10 @@ alias ls='eza --color=always --group-directories-first --icons'
 alias ll='eza -la --color=always --group-directories-first --icons'
 alias la='eza -a --color=always --group-directories-first --icons'
 alias lt='eza -T --color=always --group-directories-first --icons'
-alias l.='eza -a | grep -E "^\."'
+alias lg='eza -a | rg "^\."'
 
-# Better cat with syntax highlighting
-alias cat='bat --paging=never'
+# Better cat with syntax highlighting (plain mode for compatibility)
+alias cat='bat --paging=never --style=plain'
 alias less='bat'
 
 # zoxide aliases (cd replacement)
@@ -53,7 +53,7 @@ alias lh='eza -la --color=always --group-directories-first --icons -a'
 
 # Quick directory listing
 alias lsd='eza -lD --color=always --group-directories-first --icons'  # List only directories
-alias lsf='eza -lF --color=always --group-directories-first --icons | grep -v "^d"'  # List only files
+alias lsf='eza -lF --color=always --group-directories-first --icons | rg -v "^d"'  # List only files
 
 # System monitoring
 alias top='top -o cpu'
