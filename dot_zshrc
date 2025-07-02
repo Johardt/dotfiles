@@ -1,6 +1,8 @@
 source ~/.zsh/functions.zsh
 source ~/.zsh/aliases.zsh
+source ~/.zsh/nvm.zsh
 
 export EDITOR=nvim
 
 eval "$(starship init zsh)"
+
