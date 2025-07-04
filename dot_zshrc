@@ -1,5 +1,4 @@
 # Load custom functions, aliases, nvm, and keybinds
-source ~/.zsh/functions.zsh
 source ~/.zsh/aliases.zsh
 source ~/.zsh/nvm.zsh
 source ~/.zsh/keybinds.zsh
