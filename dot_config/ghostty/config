@@ -4,8 +4,6 @@ font-family = "GeistMono Nerd Font"
 # Font settings
 font-size = 14
 font-feature = calt, liga, dlig
-font-thicken = true
-font-thicken-strength = 20
 
 cursor-style = bar
 
