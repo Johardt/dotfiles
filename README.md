@@ -2,6 +2,7 @@
 
 A minimal and organized collection of configuration files to set up a productive development environment.
 Deliberately simple, focusing on essential tools and configurations; meant to be extendable.
+Made to feel unobtrusive, respecting your preferences and workflow.
 
 ## Setup
 
@@ -30,6 +31,8 @@ And that's it! Although you will want to follow the instructions for the post-in
 
 ## Post-Installation
 
+### Setting up 1Password for Git and SSH
+
 The `.gitconfig` file has been set up to use the `1password` credential helper. You will need to follow the [instructions provided by 1Password](https://developer.1password.com/docs/ssh/get-started) to complete the integration with ssh.
 You should now have a .ssh/config file that looks like this:
 
@@ -57,3 +60,8 @@ Of course you can also add any further git profile orchestration you want to hav
 
 Finally, you need to set up GitHub / GitLab SSH keys for authentication and signing commits.
 You can follow the instructions in the [GitHub documentation](https://docs.github.com/authentication/connecting-to-github-with-ssh).
+
+### Next Steps
+
+- **Configure Raycast**: Setup shortcuts to quickly open Browser, Terminal, and IDE.
+- **Add Browser extensions**: Install extensions like 1Password and uBlock Origin.

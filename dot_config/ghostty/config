@@ -1,5 +1,5 @@
 theme = dark:xcodedark,light:xcodelight
-font-family = "GeistMono Nerd Font"
+font-family = "JetbrainsMono Nerd Font"
 
 # Font settings
 font-size = 14
