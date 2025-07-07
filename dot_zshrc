@@ -5,6 +5,7 @@ source ~/.zsh/keybinds.zsh
 
 # Editor
 export EDITOR=nvim
+export HOMEBREW_NO_ENV_HINTS=1
 
 # History configuration
 HISTSIZE=5000

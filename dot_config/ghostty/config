@@ -1,14 +1,23 @@
 theme = dark:xcodedark,light:xcodelight
-font-family = "JetBrainsMono Nerd Font"
+font-family = "GeistMono Nerd Font"
 
 # Font settings
-font-size = 13
+font-size = 14
+font-feature = calt, liga, dlig
+font-thicken = true
+font-thicken-strength = 20
+
+cursor-style = bar
 
 # Window settings
 window-decoration = true
 window-padding-x = 8
 window-padding-y = 8
+window-height = 33
+window-width = 126
 confirm-close-surface = false
+cursor-click-to-move = true
+title = " "
 
 # Performance
 unfocused-split-opacity = 0.8
@@ -34,3 +43,6 @@ keybind = cmd+shift+l=text:ll\x0d
 # Search in terminal
 keybind = cmd+f=text:/
 keybind = cmd+shift+f=text:?
+
+# Quick terminal
+keybind = global:ctrl+grave_accent=toggle_quick_terminal
