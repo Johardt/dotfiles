@@ -28,37 +28,6 @@ require("lazy").setup({
     "nomis51/nvim-xcode-theme",
     lazy = false,
     priority = 1000,
-    config = function()
-      -- Function to detect if system is in dark mode
-      local function is_dark_mode()
-        -- First try TERM_BACKGROUND environment variable
-        local term_bg = vim.fn.getenv("TERM_BACKGROUND")
-        if term_bg == "light" then
-          return false
-        elseif term_bg == "dark" then
-          return true
-        end
-        
-        -- Fallback: check macOS system appearance
-        local handle = io.popen("defaults read -g AppleInterfaceStyle 2>/dev/null")
-        if handle then
-          local result = handle:read("*a")
-          handle:close()
-          -- If AppleInterfaceStyle is "Dark", system is in dark mode
-          -- If the command fails or returns empty, system is in light mode
-          return result:match("Dark") ~= nil
-        end
-        
-        -- Default to light mode if detection fails
-        return false
-      end
-      
-      if is_dark_mode() then
-        vim.cmd.colorscheme("xcodedark")
-      else
-        vim.cmd.colorscheme("xcodelight")
-      end
-    end,
   },
 
   -- Treesitter for syntax highlighting
@@ -71,23 +40,48 @@ require("lazy").setup({
     },
   },
 
+  -- TypeScript tools (replaces deprecated tsserver)
+  {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("typescript-tools").setup({})
+    end,
+  },
+
   -- LSP with automatic setup
   {
     "neovim/nvim-lspconfig",
     config = function()
       local lspconfig = require("lspconfig")
       local servers = {
-        "tsserver", "pyright", "lua_ls", "rust_analyzer", "gopls", -- Add more as needed
+        "pyright", "lua_ls", "rust_analyzer", "gopls", -- Add more as needed
       }
 
       for _, lsp in ipairs(servers) do
-        lspconfig[lsp].setup({})
+        local ok, _ = pcall(lspconfig[lsp].setup, {})
+        if not ok then
+          vim.notify("LSP " .. lsp .. " not found", vim.log.levels.WARN)
+        end
       end
     end,
   },
 
   -- File explorer
-  { "nvim-tree/nvim-tree.lua", opts = {} },
+  { 
+    "nvim-tree/nvim-tree.lua", 
+    opts = { 
+      view = { width = 30 },
+      renderer = {
+        highlight_git = true,
+        icons = {
+          show = {
+            git = true,
+          },
+        },
+      },
+    },
+  },
 
   -- Which-key popup
   { "folke/which-key.nvim", opts = {} },
