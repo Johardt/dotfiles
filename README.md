@@ -1,6 +1,6 @@
 # Johardt's dotfiles
 
-A minimal and organized collection of configuration files to set up a productive development environment.
+A minimal and organized collection of configuration files to set up a productive MacOS development environment.
 Deliberately simple, focusing on essential tools and configurations; meant to be extendable.
 Made to feel unobtrusive, respecting your preferences and workflow.
 
