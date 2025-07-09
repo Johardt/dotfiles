@@ -20,7 +20,6 @@ title = " "
 # Performance
 unfocused-split-opacity = 0.8
 
-# Hide login message by running clear on startup
 shell-integration = zsh
 
 # Text navigation (word jumps)
