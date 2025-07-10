@@ -1,6 +1,8 @@
 # Johardt's dotfiles
 
-A minimal and organized collection of configuration files to set up a productive MacOS development environment.
+I like pretty things. I also like to stick to best practices and standards.
+This repository contains my personal dotfiles, which are used to configure my development environment in MacOS.  
+
 Deliberately simple, focusing on essential tools and configurations; meant to be extendable.
 Made to feel unobtrusive, respecting your preferences and workflow.
 
