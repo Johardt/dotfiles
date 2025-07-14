@@ -15,6 +15,7 @@ brew "ripgrep"
 brew "lua-language-server"
 brew "git-delta"
 
+{{ if .fullInstall }}
 # Casks
 cask "ghostty"
 cask "zen"
@@ -26,6 +27,7 @@ cask "raycast"
 cask "visual-studio-code"
 cask "orbstack"
 cask "zed"
+{{ end }}
 
 # Fonts
 cask "font-jetbrains-mono-nerd-font"

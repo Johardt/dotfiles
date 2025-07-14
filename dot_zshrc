@@ -25,7 +25,7 @@ export FZF_ALT_C_COMMAND='fd --type d --strip-cwd-prefix --hidden --follow --exc
 export FZF_DEFAULT_OPTS=$'
   --height 40%
   --layout=reverse
-  --border
+  --border=rounded
   --preview "bat --color=always --style=numbers --line-range=:500 {}"
   --preview-window=right:60%:wrap
   --bind="ctrl-u:preview-page-up,ctrl-d:preview-page-down"
@@ -38,6 +38,11 @@ export FZF_CTRL_T_OPTS=$'
 
 export FZF_ALT_C_OPTS=$'
   --preview "eza --tree --color=always {} | head -200"
+'
+
+export FZF_CTRL_R_OPTS=$'
+  --preview "echo {} | bat --language=zsh --style=plain --color=always"
+  --preview-window=up:3
 '
 
 # Load fnm (Fast Node Manager)

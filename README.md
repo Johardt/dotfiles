@@ -6,28 +6,13 @@ This repository contains my personal dotfiles, which are used to configure my de
 Deliberately simple, focusing on essential tools and configurations; meant to be extendable.
 Made to feel unobtrusive, respecting your preferences and workflow.
 
-## Setup
+## Installation
 
-1. **Install Homebrew**: Follow the instructions to install [Homebrew](https://brew.sh/) on your system.
+Execute the following commands to initialize and apply the configuration:
 
-2. **Install Chezmoi**: Use Homebrew to install [Chezmoi](https://www.chezmoi.io/):
-
-   ```bash
-   brew install chezmoi
-   ```
-
-3. **Apply configuration**: Execute the following commands to initialize and apply the configuration:
-
-   ```bash
-   chezmoi init git@github.com:Johardt/dotfiles.git
-   chezmoi apply
-   ```
-
-4. **Install dependencies**: After applying the configuration, run the following command to install necessary packages:
-
-    ```bash
-    brew bundle install --file=~/.Brewfile
-    ```
+  ```bash
+  sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply Johardt
+  ```
 
 And that's it! Although you will want to follow the instructions for the post-installation to integrate 1Password with git and SSH.
 
