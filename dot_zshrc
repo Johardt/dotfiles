@@ -1,34 +1,28 @@
-# Load custom functions, aliases, nvm, and keybinds
+# Environment
+source ~/.zsh/env.zsh
+
+# Load custom modules
 source ~/.zsh/aliases.zsh
-source ~/.zsh/nvm.zsh
 source ~/.zsh/keybinds.zsh
 
 # History configuration
 HISTSIZE=5000
 SAVEHIST=5000
 HISTFILE=~/.zsh_history
-setopt HIST_IGNORE_DUPS        # Don't record an entry that was just recorded again
-setopt HIST_IGNORE_ALL_DUPS    # Delete old recorded entry if new entry is a duplicate
-setopt HIST_IGNORE_SPACE       # Don't record an entry starting with a space
-setopt HIST_SAVE_NO_DUPS       # Don't write duplicate entries in the history file
-setopt HIST_REDUCE_BLANKS      # Remove superfluous blanks before recording entry
-setopt SHARE_HISTORY           # Share history between all sessions
-setopt EXTENDED_HISTORY        # Write the history file in the ":start:elapsed;command" format
+setopt HIST_IGNORE_DUPS HIST_IGNORE_ALL_DUPS HIST_IGNORE_SPACE
+setopt HIST_SAVE_NO_DUPS HIST_REDUCE_BLANKS SHARE_HISTORY EXTENDED_HISTORY
 
-# Don't save commands with secrets to history
-HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
-
-# Initialize zoxide (smart cd replacement)
+# Load zoxide (smart cd)
 eval "$(zoxide init zsh)"
 
-# Initialize fzf
+# Load fzf
 eval "$(fzf --zsh)"
 
-# FZF configuration for better UX
+# FZF config: command + layout + preview
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND='fd --type d --strip-cwd-prefix --hidden --follow --exclude .git'
-export FZF_DEFAULT_OPTS='
+export FZF_DEFAULT_OPTS=$'
   --height 40%
   --layout=reverse
   --border
@@ -37,62 +31,50 @@ export FZF_DEFAULT_OPTS='
   --bind="ctrl-u:preview-page-up,ctrl-d:preview-page-down"
 '
 
-# FZF file preview function
-export FZF_CTRL_T_OPTS="
-  --preview 'bat -n --color=always {}'
-  --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+export FZF_CTRL_T_OPTS=$'
+  --preview "bat -n --color=always {}"
+  --bind "ctrl-/:change-preview-window(down|hidden|)"
+'
 
-# FZF directory preview function  
-export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
+export FZF_ALT_C_OPTS=$'
+  --preview "eza --tree --color=always {} | head -200"
+'
 
-# Load syntax highlighting (should be near the end)
-source $BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# Load fnm (Fast Node Manager)
+eval "$(fnm env)"
 
-# Load autosuggestions (should be after syntax highlighting)
-source $BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# Load syntax highlighting (should be before autosuggestions)
+source "$BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
-# Autosuggestion configuration
+# Load autosuggestions
+source "$BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#666666"
 
-# Enable colors
-autoload -U colors && colors
+# Colors
+autoload -Uz colors && colors
 
-# Optimized completion system with caching
+# Completion setup (cached, 1-day freshness)
 autoload -Uz compinit
-
-# Only regenerate completion cache once per day
 if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
   compinit
 else
-  compinit -C  # Skip security check for faster loading
+  compinit -C
 fi
 
-# Case insensitive completion
+# Completion tweaks
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-# Better completion menu
 zstyle ':completion:*' menu select
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-# Complete . and .. special directories
 zstyle ':completion:*' special-dirs true
-# Show completion descriptions
 zstyle ':completion:*' verbose true
-# Group results by category
 zstyle ':completion:*' group-name ''
-# Add colors to processes for kill completion
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 
-# Navigation improvements
-setopt AUTO_CD              # Change directory just by typing directory name
-setopt AUTO_PUSHD           # Push the old directory onto the stack on cd
-setopt PUSHD_IGNORE_DUPS    # Do not store duplicates in the stack
-setopt PUSHD_SILENT         # Do not print the directory stack after pushd or popd
+# Navigation
+setopt AUTO_CD AUTO_PUSHD PUSHD_IGNORE_DUPS PUSHD_SILENT
+setopt CORRECT CORRECT_ALL
 
-# Correction
-setopt CORRECT              # Auto correct mistakes
-setopt CORRECT_ALL          # Auto correct mistakes for all arguments
-
-# Initialize Starship prompt (should be last)
+# Starship prompt (must be last)
 eval "$(starship init zsh)"
-

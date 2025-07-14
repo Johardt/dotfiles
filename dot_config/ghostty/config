@@ -15,7 +15,7 @@ window-height = 33
 window-width = 118
 confirm-close-surface = false
 cursor-click-to-move = true
-title = " "
+title = ""
 
 # Performance
 unfocused-split-opacity = 0.8
