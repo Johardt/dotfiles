@@ -1,3 +1,21 @@
+[core]
+  compression = 9
+  whitespace = error
+  preloadindex = true
+  pager = delta
+
+[gpg]
+  format = ssh
+
+[gpg "ssh"]
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+
+[commit]
+  gpgsign = true
+
+[include]
+  path = ~/.gitconfig.local
+
 [init]
   defaultBranch = main
 
@@ -10,12 +28,7 @@
   context = 3
   renames = copies
   interHunkContext = 10
-
-[pager]
-  diff = diff-so-fancy | $PAGER
-
-[diff-so-fancy]
-  markEmptyLines = false
+  renameLimit = 99999
 
 [color "diff"]
   meta        = black bold
@@ -24,21 +37,28 @@
   old         = red
 
 [interactive]
-  diffFilter = diff-so-fancy --patch
-  singlekey = true
+  diffFilter = delta --color-only
+
+[delta]
+  syntax-theme = GitHub
+  line-numbers = true
+  navigate = true
 
 [push]
   autoSetupRemote = true
-  default = current
+  default = simple
   followTags = true
 
 [pull]
-  default = current
-  rebase = true
+  rebase = false
+  ff = only
 
 [rebase]
   autoStash = true
   missingCommitsCheck = warn
+
+[merge]
+  conflictstyle = zdiff3
 
 [log]
   abbrevCommit = true

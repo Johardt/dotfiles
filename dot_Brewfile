@@ -13,7 +13,7 @@ brew "bat"
 brew "fd"
 brew "ripgrep"
 brew "lua-language-server"
-brew "diff-so-fancy"
+brew "git-delta"
 
 # Casks
 cask "ghostty"
