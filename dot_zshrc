@@ -4,6 +4,7 @@ source ~/.zsh/env.zsh
 # Load custom modules
 source ~/.zsh/aliases.zsh
 source ~/.zsh/keybinds.zsh
+source ~/.zsh/private.zsh
 
 # History configuration
 HISTSIZE=5000
