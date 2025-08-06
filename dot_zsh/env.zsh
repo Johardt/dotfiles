@@ -10,6 +10,9 @@ else
   export BREW_PREFIX="/usr/local"
 fi
 
+# Homebrew configuration
+export HOMEBREW_NO_ENV_HINTS=1
+
 # UI & color
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad

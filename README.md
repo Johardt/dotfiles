@@ -1,18 +1,25 @@
 # Johardt's dotfiles
 
-I like pretty things. I also like to stick to best practices and standards.
-Reflecting this, I have created a set of dotfiles that are simple, clean, and effective.
-It uses [chezmoi](https://www.chezmoi.io/) primarily for managing and versioning my configuration files.
-These dotfiles configure a MacOS environment with a focus on developer productivity, with one command.
+A carefully curated collection of dotfiles designed for macOS developers who value productivity and aesthetics. This one-stop setup replaces traditional command-line tools with modern, feature-rich alternatives while providing a complete development environment including editors, browsers, productivity apps, and carefully selected fonts.
+
+Built around [chezmoi](https://www.chezmoi.io/) for reliable configuration management, these dotfiles transform your entire development workflow with tools like `bat` instead of `cat`, `eza` for `ls`, `ripgrep` for `grep`, modern editors like Neovim and Zed, the Ghostty terminal, Zen browser, Raycast launcher, and optimized developer fonts.
 
 ## Features
 
-- Deliberately simple, focusing on essential tools and configurations; meant to be extendable.
-- Made to feel unobtrusive, respecting your preferences and workflow (Like adapting to system themes).
-- Declarative and idempotent, ensuring a reliable setup every time you run it.
-- Integrates with 1Password for secure credential management.
+- Complete developer environment setup with modern CLI tools, editors, terminal, browser, and productivity applications
+- Modern CLI tools that enhance productivity with better defaults, syntax highlighting, and improved performance
+- Professional development applications including Neovim, VS Code, Zed, Ghostty terminal, and Zen browser
+- Productivity tools like Raycast for system management and workflow automation
+- Carefully selected Nerd Fonts (JetBrains Mono, Geist Mono) optimized for coding
+- Automatic light and dark theme adaptation that respects your system preferences
+- Modular and extensible configuration designed to grow with your workflow
+- Secure credential management through 1Password integration for SSH and Git operations
+- Declarative and idempotent configuration ensuring consistent results across installations
 
 ## Installation
+
+**Prerequisites**: This dotfiles setup currently requires [1Password](https://1password.com/) for SSH key management and commit signing. Support for other password managers is planned for future releases.
+1Password will be automatically installed during the setup process, but a 1Password account is required to complete the SSH integration.
 
 Execute the following commands to initialize and apply the configuration:
 
@@ -20,34 +27,38 @@ Execute the following commands to initialize and apply the configuration:
   sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply Johardt
   ```
 
-And that's it! Although you will want to follow the instructions for the post-installation to integrate 1Password with git and SSH.
+And that's it! Although you will want to follow the instructions for the post-installation to complete the setup.
 
 ## Post-Installation
 
-These are all optional steps you can follow for a deeper integration of the dotfiles with your system and tools.
-None of these are required, but are my preferred configurations.
+### Required: Configure Git User Settings
 
-### Setting up 1Password for Git and SSH
+A `.gitconfig.local` file will be created in your home directory with placeholder values. You **must** edit this file to add your personal git configuration:
 
-The `.gitconfig` file has been set up to use the `1password` credential helper. You will need to follow the [instructions provided by 1Password](https://developer.1password.com/docs/ssh/get-started) to complete the integration with ssh.
+```bash
+# Edit the git local config file
+nvim ~/.gitconfig.local
+```
+
+Update the following values:
+
+- `email`: Your git email address
+- `name`: Your full name
+- `signingkey`: Your SSH public key for commit signing
+
+### Required: Complete 1Password Integration
+
+The git configuration is set up to use 1Password for SSH signing and authentication. You **must** complete the 1Password setup for git to work properly.
+
+Follow the [instructions provided by 1Password](https://developer.1password.com/docs/ssh/get-started) to complete the SSH integration.
 You should now have a .ssh/config file that looks like this:
 
 ```ini
 Host *
-  IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+  IdentityAgent "~/Libray/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
 ```
 
-The .gitconfig expects a `.gitconfig.local` file to be present.
-In this file, you need to add your default git email and name, as well as your default SSH public key, under the `[user]` section, like this:
-
-```ini
-[user]
-  email = <your_email@example.com>
-  name = Your Name
-  sshKey = <your_ssh_public_key>
-```
-
-Of course you can also add any further git profile orchestration you want to have in this file, like setting up a configuration for work and personal repositories:
+You can also add any further git profile orchestration you want to have in the `.gitconfig.local` file, like setting up a configuration for work and personal repositories:
 
 ```ini
 [includeIf "gitdir:~/Projects/work/"]
@@ -57,7 +68,9 @@ Of course you can also add any further git profile orchestration you want to hav
 Finally, you need to set up GitHub / GitLab SSH keys for authentication and signing commits.
 You can follow the instructions in the [GitHub documentation](https://docs.github.com/authentication/connecting-to-github-with-ssh).
 
-### Configure Raycast
+**Note**: The current git configuration is hardcoded to use 1Password for SSH operations. Support for other password managers and more flexible configuration options is planned for future releases.
+
+### Optional: Configure Raycast
 
 Open Raycast and go to Settings > Advanced.
 Select "Import" and choose `default.rayconfig` from the `~/.config` directory.

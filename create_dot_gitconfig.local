@@ -1,0 +1,8 @@
+[user]
+  email = your_email@example.com
+  name = Your Name
+  signingkey = your_ssh_public_key
+
+# Example: Include work-specific configuration for work directories
+# [includeIf "gitdir:~/Projects/work/"]
+#   path = ~/Projects/work/.gitconfig
