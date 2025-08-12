@@ -1,6 +1,11 @@
 vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46/"
 vim.g.mapleader = " "
 
+-- Enable compiled Lua module caching
+pcall(function()
+  if vim.loader and vim.loader.enable then vim.loader.enable() end
+end)
+
 -- bootstrap lazy and all plugins
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 
