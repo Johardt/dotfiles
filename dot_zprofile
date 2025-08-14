@@ -5,6 +5,3 @@ source ~/.zsh/env.zsh
 
 # Brew path setup
 eval "$($BREW_PREFIX/bin/brew shellenv)"
-
-# OrbStack integration
-source ~/.orbstack/shell/init.zsh 2>/dev/null || :

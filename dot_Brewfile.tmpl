@@ -2,8 +2,6 @@
 brew "chezmoi"
 brew "starship"
 brew "neovim"
-brew "pnpm"
-brew "fnm"
 brew "zoxide"
 brew "fzf"
 brew "zsh-autosuggestions"
@@ -12,13 +10,26 @@ brew "eza"
 brew "bat"
 brew "fd"
 brew "ripgrep"
-brew "lua-language-server"
 brew "git-delta"
 brew "glow"
+
+{{ if .langInstall }}
+# Language support
+brew "fnm"
+brew "pnpm"
+brew "go"
+brew "lua-language-server"
+{{ end }}
+
+{{ if .devopsInstall }}
+# DevOps utilities
 brew "kubectl"
 brew "minikube"
+brew "lima"
+brew "ansible"
+{{ end }}
 
-{{ if .fullInstall }}
+{{ if .caskInstall }}
 # Casks
 cask "ghostty"
 cask "zen"
