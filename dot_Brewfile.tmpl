@@ -17,6 +17,7 @@ brew "glow"
 # Language support
 brew "fnm"
 brew "pnpm"
+brew "deno"
 brew "go"
 brew "pyenv"
 brew "lua-language-server"
@@ -24,6 +25,8 @@ brew "lua-language-server"
 
 {{ if .devopsInstall }}
 # DevOps utilities
+tap "hashicorp/tap"
+brew "hashicorp/tap/terraform"
 brew "kubectl"
 brew "minikube"
 brew "lima"
