@@ -1,0 +1,7 @@
+#!/bin/bash
+
+{{ if .caskInstall }}
+# Start Podman Desktop
+echo "Starting Podman Desktop, please complete the installation process."
+open -a "Podman Desktop"
+{{ end }}
