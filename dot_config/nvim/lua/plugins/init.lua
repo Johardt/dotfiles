@@ -27,6 +27,16 @@ return {
     end,
   },
 
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    opts = require "configs.noice",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    },
+  },
+
   -- test new blink
   -- { import = "nvchad.blink.lazyspec" },
 
