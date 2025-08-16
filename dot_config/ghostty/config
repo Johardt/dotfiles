@@ -1,4 +1,5 @@
-theme = dark:xcodedark,light:xcodelight
+#  theme = dark:xcodedark,light:xcodelight
+theme = dark:tokyonight_moon,light:tokyonight_day
 font-family = "JetbrainsMono Nerd Font"
 
 # Font settings
