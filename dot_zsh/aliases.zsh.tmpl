@@ -2,7 +2,9 @@
 alias cm=chezmoi
 alias vi=nvim
 
-# Git aliases
+alias lg=lazygit
+
+# Git aliases - probably obsolete with lazygit
 alias gs="git status --short"
 alias gd="git diff | delta"
 alias ga="git add"
@@ -18,7 +20,7 @@ alias ls='eza --color=always --group-directories-first --icons'
 alias ll='eza -la --color=always --group-directories-first --icons'
 alias la='eza -a --color=always --group-directories-first --icons'
 alias lt='eza -T --color=always --group-directories-first --icons'
-alias lg='eza -a | rg "^\."'
+# alias lg='eza -a | rg "^\."'
 
 # Better cat with syntax highlighting (plain mode for compatibility)
 alias cat='bat --paging=never'
