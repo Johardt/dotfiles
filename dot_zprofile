@@ -1,8 +1,0 @@
-touch ~/.hushlogin
-
-# Environment
-source ~/.zsh/env.zsh
-source ~/.config/op/plugins.sh # TODO: `op plugin init aws` after installation and reload
-
-# Brew path setup
-eval "$($BREW_PREFIX/bin/brew shellenv)"
