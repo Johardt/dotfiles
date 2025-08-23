@@ -1,4 +1,4 @@
-source ~/.config/fish/aliases.fish
+source ~/.config/fish/abbr.fish
 source ~/.config/fish/env.fish
 source ~/.config/fish/functions/aliases.fish
 
