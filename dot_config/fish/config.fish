@@ -8,7 +8,7 @@ fish_vi_key_bindings
 eval ($BREW_PREFIX/bin/brew shellenv)
 
 # Zoxide, fzf
-eval (zoxide init fish)
+zoxide init fish | source
 fzf --fish | source
 
 # Starship prompt
