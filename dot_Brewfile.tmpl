@@ -31,8 +31,11 @@ tap "hashicorp/tap"
 brew "hashicorp/tap/terraform"
 brew "kubectl"
 brew "minikube"
+brew "k9s"
 brew "ansible"
 brew "awscli"
+tap "common-fate/granted"
+brew "granted"
 {{ end }}
 
 {{ if .caskInstall }}
@@ -48,6 +51,7 @@ cask "visual-studio-code"
 cask "zed"
 cask "podman-desktop"
 cask "notion"
+cask "tunnelblick"
 
 # Fonts
 cask "font-jetbrains-mono-nerd-font"

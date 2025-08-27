@@ -1,9 +1,13 @@
 set -x EDITOR hx
 set -x PAGER bat
 set -x MANPAGER "sh -c 'col -bx | bat -l man -p'"
+
 set -gx BREW_PREFIX (brew --prefix)
 set -x HOMEBREW_NO_ENV_HINTS 1
+set -x PATH "/usr/local/bin:$PATH"
+
 set -g fish_greeting ''
+set -x XDG_CONFIG_HOME ~/.config
 set -x FZF_DEFAULT_COMMAND 'fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
 set -x FZF_DEFAULT_OPTS '
   --height 40%
@@ -17,3 +21,5 @@ set -x FZF_CTRL_R_OPTS '
   --preview "echo {} | bat --language=fish --style=plain --color=always"
   --preview-window=up:3
 '
+
+set -x K9S_CONFIG_DIR ~/.config/k9s
