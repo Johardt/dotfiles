@@ -1,6 +1,7 @@
 source ~/.config/fish/abbr.fish
 source ~/.config/fish/env.fish
 source ~/.config/fish/functions/aliases.fish
+source ~/.config/fish/work.fish
 
 fish_vi_key_bindings
 
