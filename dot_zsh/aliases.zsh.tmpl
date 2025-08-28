@@ -4,15 +4,10 @@ alias vi=nvim
 
 alias lg=lazygit
 
-# Git aliases - probably obsolete with lazygit
+# Git aliases
 alias gs="git status --short"
 alias gd="git diff | delta"
-alias ga="git add"
 alias gap="git add --patch"
-alias gc="git commit"
-alias gp="git push"
-alias gu="git pull"
-alias gb="git branch"
 alias gl="git log --all --graph --pretty=format:'%C(magenta)%h %an %ar%C(auto) %D%n%s%n'"
 
 # Modern replacements for common commands
@@ -38,7 +33,6 @@ alias find='fd'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
-alias ~='cd ~'
 
 # Show hidden files by default
 alias lh='eza -la --color=always --group-directories-first --icons -a'
@@ -48,11 +42,7 @@ alias reload='source ~/.zshrc'
 
 {{ if .devopsInstall }}
 # DevOps related aliases
-alias k='kubectl'
-alias kg='kubectl get'
-alias kd='kubectl describe'
-alias kl='kubectl logs'
-alias kex='kubectl exec -it'
-
+alias kc='kubectl'
 alias tf='terraform'
+alias assume=". assume"
 {{ end }}

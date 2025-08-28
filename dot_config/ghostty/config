@@ -21,7 +21,7 @@ title = ""
 # Performance
 unfocused-split-opacity = 0.8
 
-shell-integration = zsh
+shell-integration = detect
 
 # Text navigation (word jumps)
 keybind = alt+left=text:\x1bb

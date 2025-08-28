@@ -30,12 +30,6 @@
   interHunkContext = 10
   renameLimit = 99999
 
-[color "diff"]
-  meta        = black bold
-  frag        = magenta
-  whitespace  = yellow reverse
-  old         = red
-
 [interactive]
   diffFilter = delta --color-only
 

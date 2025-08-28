@@ -1,30 +1,29 @@
 # Formulae
 brew "chezmoi"
 brew "starship"
-brew "neovim"
-brew "zoxide"
-brew "fzf"
-brew "zsh-autosuggestions"
-brew "zsh-syntax-highlighting"
+brew "helix"
+brew "fish"
 brew "eza"
 brew "bat"
-brew "fd"
-brew "ripgrep"
 brew "git-delta"
 brew "glow"
-brew "yazi"
 brew "lazygit"
 brew "git-crypt"
+brew "lima"
+brew "asdf"
 
-{{ if .langInstall }}
-# Language support
-brew "fnm"
-brew "pnpm"
-brew "deno"
-brew "go"
-brew "pyenv"
-brew "lua-language-server"
-{{ end }}
+# yazi and dependencies
+brew "ffmpeg"
+brew "sevenzip"
+brew "jq"
+brew "poppler"
+brew "fd"
+brew "ripgrep"
+brew "fzf"
+brew "zoxide"
+brew "resvg"
+brew "imagemagick"
+brew "yazi"
 
 {{ if .devopsInstall }}
 # DevOps utilities
@@ -32,10 +31,12 @@ tap "hashicorp/tap"
 brew "hashicorp/tap/terraform"
 brew "kubectl"
 brew "minikube"
-brew "lima"
+brew "k9s"
+brew "helm"
 brew "ansible"
-brew "ansible-lint"
 brew "awscli"
+tap "common-fate/granted"
+brew "granted"
 {{ end }}
 
 {{ if .caskInstall }}
@@ -51,8 +52,10 @@ cask "visual-studio-code"
 cask "zed"
 cask "podman-desktop"
 cask "notion"
+cask "tunnelblick"
 
 # Fonts
 cask "font-jetbrains-mono-nerd-font"
 cask "font-geist-mono-nerd-font"
+cask "font-symbols-only-nerd-font" # Fallback, for yazi
 {{ end }}

@@ -1,0 +1,18 @@
+source ~/.config/fish/abbr.fish
+source ~/.config/fish/env.fish
+source ~/.config/fish/functions/aliases.fish
+source ~/.config/fish/work.fish
+
+fish_vi_key_bindings
+
+# Homebrew configuration for fish
+eval ($BREW_PREFIX/bin/brew shellenv)
+
+# Zoxide, fzf
+zoxide init fish | source
+fzf --fish | source
+
+alias assume="source (brew --prefix)/bin/assume.fish"
+
+# Starship prompt
+eval (starship init fish)
