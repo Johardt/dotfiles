@@ -3,6 +3,8 @@ export EDITOR=nvim
 export PAGER="bat"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
+export XDG_CONFIG_HOME="~/.config"
+
 # Homebrew prefix detection
 if [[ "$(uname -m)" == "arm64" ]]; then
   export BREW_PREFIX="/opt/homebrew"
