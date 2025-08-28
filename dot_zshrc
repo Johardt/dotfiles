@@ -82,7 +82,6 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 
 # Navigation
 setopt AUTO_CD AUTO_PUSHD PUSHD_IGNORE_DUPS PUSHD_SILENT
-setopt CORRECT CORRECT_ALL
 
 # Starship prompt (must be last)
 eval "$(starship init zsh)"
