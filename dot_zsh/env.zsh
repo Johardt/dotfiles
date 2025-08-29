@@ -5,6 +5,8 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 export XDG_CONFIG_HOME="$HOME/.config"
 
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+
 # Homebrew prefix detection
 if [[ "$(uname -m)" == "arm64" ]]; then
   export BREW_PREFIX="/opt/homebrew"

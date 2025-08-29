@@ -12,7 +12,5 @@ eval ($BREW_PREFIX/bin/brew shellenv)
 zoxide init fish | source
 fzf --fish | source
 
-alias assume="source (brew --prefix)/bin/assume.fish"
-
 # Starship prompt
 eval (starship init fish)
