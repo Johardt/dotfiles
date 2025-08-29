@@ -1,5 +1,5 @@
 --italic-text=always
 --style=plain
 --theme=auto:system
---theme-dark=default
---theme-light=GitHub
+--theme-dark="Catppuccin Macchiato"
+--theme-light="Catppuccin Latte"

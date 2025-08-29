@@ -17,6 +17,7 @@ brew "zsh-syntax-highlighting"
 brew "zsh-autosuggestions"
 brew "gpg"
 brew "gawk"
+brew "catppuccin/tap/whiskers"
 
 # yazi and dependencies
 brew "sevenzip"
@@ -32,7 +33,6 @@ brew "yazi"
 
 {{ if .devopsInstall }}
 # DevOps utilities
-tap "hashicorp/tap"
 brew "hashicorp/tap/terraform"
 brew "kubectl"
 brew "minikube"
@@ -42,8 +42,7 @@ brew "ansible"
 brew "ansible-lint"
 brew "awscli"
 brew "eksctl"
-tap "common-fate/granted"
-brew "granted"
+brew "common-fate/granted"
 {{ end }}
 
 {{ if .caskInstall }}
