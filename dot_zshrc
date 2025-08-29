@@ -4,7 +4,6 @@ source ~/.zsh/env.zsh
 # Load custom modules
 source ~/.zsh/aliases.zsh
 source ~/.zsh/keybinds.zsh
-source ~/.zsh/private.zsh
 source ~/.zsh/functions.zsh
 source ~/.zsh/work.zsh
 
