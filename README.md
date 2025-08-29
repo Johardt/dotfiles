@@ -89,3 +89,7 @@ You can follow the instructions in the [GitHub documentation](https://docs.githu
 Open Raycast and go to Settings > Advanced.
 Select "Import" and choose `default.rayconfig` from the `~/.config` directory.
 This will import the default configuration for Raycast, which includes various extensions and settings that enhance your productivity.
+
+### Optional: Set up Catppuccin theme for Zen Browser
+
+Follow the [instructions provided by Zen](https://docs.zen-browser.app/guides/live-editing#step-3-open-style-editor-in-zen-browser) to install the themes that are installed into the privateProfiles directory by chezmoi. You will need to move the whole `chrome` directory to your profile directory.
