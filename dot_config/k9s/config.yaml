@@ -1,3 +1,4 @@
 k9s:
   ui:
+    # Should be automatically switched (see https://github.com/Johardt/dotfiles/issues/7)
     skin: catppuccin-latte

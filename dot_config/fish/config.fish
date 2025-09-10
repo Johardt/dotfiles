@@ -12,5 +12,8 @@ eval ($BREW_PREFIX/bin/brew shellenv)
 zoxide init fish | source
 fzf --fish | source
 
+# Added by LM Studio CLI (lms)
+set -gx PATH $PATH $HOME/.lmstudio/bin
+
 # Starship prompt
 eval (starship init fish)

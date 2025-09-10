@@ -7,6 +7,9 @@ export XDG_CONFIG_HOME="$HOME/.config"
 
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:$HOME/.lmstudio/bin"
+
 # Homebrew prefix detection
 if [[ "$(uname -m)" == "arm64" ]]; then
   export BREW_PREFIX="/opt/homebrew"
