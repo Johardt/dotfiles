@@ -1,20 +1,16 @@
-# Johardt's dotfiles
+# Johardt's dotfiles 
+A curated collection for macOS developers who prioritize productivity and a clean aesthetic.
 
-A carefully curated collection of dotfiles designed for macOS developers who value productivity and aesthetics. This one-stop setup replaces traditional command-line tools with modern, feature-rich alternatives while providing a complete development environment including editors, browsers, productivity apps, and carefully selected fonts.
+This setup uses chezmoi for configuration management and replaces traditional command-line tools with modern alternatives. It includes a complete development environment with editors, browsers, productivity apps, and fonts.
 
-Built around [chezmoi](https://www.chezmoi.io/) for reliable configuration management, these dotfiles transform your entire development workflow with tools like `bat` instead of `cat`, `eza` for `ls`, `ripgrep` for `grep`, modern editors like Neovim and Zed, the Ghostty terminal, Zen browser, Raycast launcher, and optimized developer fonts.
-
-## Features
-
-- Complete developer environment setup with modern CLI tools, editors, terminal, browser, and productivity applications
-- Modern CLI tools that enhance productivity with better defaults, syntax highlighting, and improved performance
-- Professional development applications including Neovim, VS Code, Zed, Ghostty terminal, and Zen browser
-- Productivity tools like Raycast for system management and workflow automation
-- Carefully selected Nerd Fonts (JetBrains Mono, Geist Mono) optimized for coding
-- Automatic light and dark theme adaptation that respects your system preferences
-- Modular and extensible configuration designed to grow with your workflow
-- Secure credential management through 1Password integration for SSH and Git operations
-- Declarative and idempotent configuration ensuring consistent results across installations
+## Key components include:
+  - Modern CLI tools like bat, eza, and ripgrep for improved functionality and performance.
+  - Professional and modern applications such as Neovim, VS Code, Zed, the Ghostty terminal, and Zen browser.
+  - Installation of nerd fonts optimal for development and CLI.
+  - Automatic theme adaptation for light and dark modes.
+  - Secure credential management via 1Password.
+  - Modular and idempotent configuration for consistent setups.
+  
 
 ## Installation
 
