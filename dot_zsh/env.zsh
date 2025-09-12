@@ -17,6 +17,9 @@ else
   export BREW_PREFIX="/usr/local"
 fi
 
+# Make sure we use homebrew-installed tools first
+export PATH="$BREW_PREFIX/bin:$PATH"
+
 # Homebrew configuration
 export HOMEBREW_NO_ENV_HINTS=1
 

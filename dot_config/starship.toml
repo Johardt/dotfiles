@@ -59,7 +59,7 @@ disabled = false
 
 [terraform]
 symbol = " "
-format = "[$symbol$workspace]($style)"
+format = "[$symbol$workspace ]($style)"
 detect_folders = ['.terraform', 'terraform']
 
 [aws]
