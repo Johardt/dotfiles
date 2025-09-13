@@ -43,7 +43,6 @@ end
 # Install plugins
 echo "Installing fish plugins..."
 fisher install jorgebucaran/autopair.fish
-fisher install vitallium/tokyonight-fish
 
 echo "Fish plugins installation complete!"
 '
