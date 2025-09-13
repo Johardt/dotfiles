@@ -1,0 +1,62 @@
+{{- if eq .chezmoi.os "darwin" -}}#!/usr/bin/env bash
+set -euo pipefail
+
+# 1) Make Homebrew visible during first boot (ARM & Intel)
+if ! command -v brew >/dev/null 2>&1; then
+  [[ -x /opt/homebrew/bin/brew ]]  && eval "$(/opt/homebrew/bin/brew shellenv)" || true
+  [[ -x /usr/local/bin/brew ]]     && eval "$(/usr/local/bin/brew shellenv)" || true
+fi
+
+# 2) Install taps/brews/casks declaratively via stdin
+cat <<'BUNDLE' | brew bundle --file=/dev/stdin
+{{- range .packages.darwin.minimal.brews }}
+brew {{ . | quote }}
+{{- end }}
+{{- range .packages.darwin.minimal.casks }}
+cask {{ . | quote }}
+{{- end }}
+{{- if .devopsInstall }}
+{{- range .packages.darwin.devops.brews }}
+brew {{ . | quote }}
+{{- end }}
+{{- range .packages.darwin.devops.casks }}
+cask {{ . | quote }}
+{{- end }}
+{{- end }}
+{{- if not .minimalInstall }}
+{{- range .packages.darwin.full.brews }}
+brew {{ . | quote }}
+{{- end }}
+{{- range .packages.darwin.full.casks }}
+cask {{ . | quote }}
+{{- end }}
+{{- end }}
+BUNDLE
+
+{{- if not .minimalInstall }}
+# 3) Sync Fisher plugins declared in ~/.config/fish/fish_plugins
+if ! command -v fish >/dev/null 2>&1; then
+  echo "fish not found; skipping Fisher sync (install fish first)." >&2
+  exit 0
+fi
+
+# Pass bootstrap repo into the fish process via env; run real fish code there.
+FISH_BOOTSTRAP=jorgebucaran/fisher fish <<'FISH'
+set -l bootstrap $FISH_BOOTSTRAP
+
+# Install Fisher if missing
+if not functions -q fisher
+  echo "Installing Fisher: $bootstrap"
+  curl -fsSL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source
+  and fisher install $bootstrap
+else
+  echo "Fisher already installed."
+end
+
+# Reconcile plugins from fish_plugins (declarative)
+echo "Syncing plugins from ~/.config/fish/fish_plugins…"
+fisher update
+
+FISH
+{{- end }}
+{{- end -}}

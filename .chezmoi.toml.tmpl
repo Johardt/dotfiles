@@ -3,5 +3,8 @@
 
 [data]
   # Optional components (prompted during init/apply)
-  caskInstall   = {{ promptBool "Install GUI apps & fonts via Homebrew Casks" }}
-  devopsInstall = {{ promptBool "Install DevOps tools (kubectl, minikube, terraform, ansible)" }}
+  minimalInstall = {{ promptBool "Install only minimal set of tools (zsh, nvim, fzf and friends)" }}
+  devopsInstall = {{ promptBool "Install DevOps tools (kubectl + k9s, minikube, terraform, ansible)" }}
+  
+[hooks.read-source-state.pre]
+    command = ".local/share/chezmoi/.install-pre-init.sh"

@@ -1,0 +1,56 @@
+packages:
+  darwin:
+    minimal:
+      brews:
+        - 'git'
+        - 'chezmoi'
+        - 'starship'
+        - 'neovim'
+        - 'luarocks'
+        - 'eza'
+        - 'fd'
+        - 'ripgrep'
+        - 'bat'
+        - 'fzf'
+        - 'zoxide'
+        - 'zsh-autosuggestions'
+        - 'zsh-syntax-highlighting'
+        - 'git-delta'
+        - 'lazygit'
+      casks:
+        - 'ghostty'
+        - 'zen'
+        - '1password'
+        - '1password-cli'
+        - 'raycast'
+        - 'zed'
+        - 'visual-studio-code'
+        - 'font-jetbrains-mono-nerd-font'
+        - 'font-geist-mono-nerd-font'
+        - 'podman-desktop'
+    devops:
+      brews:
+        - 'hashicorp/tap/terraform'
+        - 'kubectl'
+        - 'minikube'
+        - 'k9s'
+        - 'helm'
+        - 'ansible'
+        - 'ansible-lint'
+        - 'awscli'
+        - 'eksctl'
+        - 'common-fate/granted/granted'
+      casks:
+    full:
+      brews:
+        - 'helix'
+        - 'fish'
+        - 'zellij'
+        - 'lima'
+        - 'jq'
+        - 'git-crypt'
+        - 'glow'
+        - 'gpg'
+        - 'gawk'
+      casks:
+        
