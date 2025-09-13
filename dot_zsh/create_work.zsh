@@ -1,1 +1,0 @@
-# Put work-related zsh config here

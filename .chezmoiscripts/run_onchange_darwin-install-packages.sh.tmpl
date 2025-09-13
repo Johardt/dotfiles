@@ -23,7 +23,7 @@ brew {{ . | quote }}
 cask {{ . | quote }}
 {{- end }}
 {{- end }}
-{{- if not .minimalInstall }}
+{{- if .advancedInstall }}
 {{- range .packages.darwin.full.brews }}
 brew {{ . | quote }}
 {{- end }}
@@ -33,7 +33,7 @@ cask {{ . | quote }}
 {{- end }}
 BUNDLE
 
-{{- if not .minimalInstall }}
+{{- if .advancedInstall }}
 # 3) Sync Fisher plugins declared in ~/.config/fish/fish_plugins
 if ! command -v fish >/dev/null 2>&1; then
   echo "fish not found; skipping Fisher sync (install fish first)." >&2

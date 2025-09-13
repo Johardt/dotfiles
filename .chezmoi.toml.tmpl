@@ -3,7 +3,7 @@
 
 [data]
   # Optional components (prompted during init/apply)
-  minimalInstall = {{ promptBool "Install only minimal set of tools (zsh, nvim, fzf and friends)" }}
+  advancedInstall = {{ promptBool "Install advanced suite of tools (fish, helix, zellij, lima)" }}
   devopsInstall = {{ promptBool "Install DevOps tools (kubectl + k9s, minikube, terraform, ansible)" }}
   
 [hooks.read-source-state.pre]

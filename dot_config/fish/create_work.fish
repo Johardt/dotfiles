@@ -1,1 +1,0 @@
-# Put work-related fish config here

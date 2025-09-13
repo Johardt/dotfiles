@@ -5,7 +5,7 @@ source ~/.zsh/env.zsh
 source ~/.zsh/aliases.zsh
 source ~/.zsh/keybinds.zsh
 source ~/.zsh/functions.zsh
-source ~/.zsh/work.zsh
+source ~/.zsh/local.zsh
 
 # History configuration
 HISTSIZE=5000

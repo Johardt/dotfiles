@@ -1,0 +1,13 @@
+{{- if eq .chezmoi.os "darwin" -}}#!/usr/bin/env bash
+set -euo pipefail
+
+GETTING_STARTED_URL="https://www.chezmoi.io/user-guide/quick-start/"
+
+printf "\nInstallation successful! 🎉\n"
+printf "Ghostty terminal will open now.\n"
+
+# Launch Ghostty (best-effort)
+if command -v open >/dev/null 2>&1; then
+  open -a "Ghostty" || echo "Ghostty not found; launch it manually from /Applications."
+fi
+{{- end -}}
