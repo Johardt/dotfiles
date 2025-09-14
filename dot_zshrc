@@ -1,6 +1,3 @@
-# Environment
-source ~/.zsh/env.zsh
-
 # Load custom modules
 source ~/.zsh/aliases.zsh
 source ~/.zsh/keybinds.zsh

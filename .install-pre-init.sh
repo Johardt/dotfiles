@@ -30,13 +30,11 @@ brew list --cask 1password-cli >/dev/null 2>&1 || need+=(1password-cli)
 if ((${#need[@]})); then
   echo "Installing casks: ${need[*]} …"
   brew install --cask "${need[@]}"
-else
-  echo "1Password and CLI already installed."
 fi
 
 # 4) Prove the CLI is ready (best-effort; do not fail here)
 if command -v op >/dev/null 2>&1; then
-  op --version || true
+  op --version >/dev/null || true
 fi
 
 exit 0
