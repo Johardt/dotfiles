@@ -49,7 +49,7 @@ unknown_indicator = ""
 
 [time]
 disabled = false
-format = "[$time]($style)"
+format = "[ $time]($style)"
 time_format = "%R"
 utc_time_offset = "local"
 style = "italic dimmed white"
@@ -63,7 +63,7 @@ format = "[$symbol$workspace ]($style)"
 detect_folders = ['.terraform', 'terraform']
 
 [aws]
-symbol = "  "
+symbol = " "
 
 [buf]
 symbol = " "

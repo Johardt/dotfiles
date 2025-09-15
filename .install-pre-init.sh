@@ -11,7 +11,7 @@ if ! command -v brew >/dev/null 2>&1; then
   printf '%s\n' "Installing Homebrew…"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
-
+    
 # 2) Ensure brew is available in THIS process (Apple Silicon & Intel)
 if [[ -x /opt/homebrew/bin/brew ]]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"

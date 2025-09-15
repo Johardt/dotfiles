@@ -17,6 +17,7 @@ packages:
         - 'zsh-syntax-highlighting'
         - 'git-delta'
         - 'lazygit'
+        - 'bash'
       casks:
         - 'ghostty'
         - 'zen'
@@ -52,5 +53,6 @@ packages:
         - 'glow'
         - 'gpg'
         - 'gawk'
+        - 'btop'
       casks:
         
