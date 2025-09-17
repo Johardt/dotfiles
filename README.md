@@ -3,6 +3,8 @@ A curated collection for macOS developers who prioritize productivity and a clea
 
 This setup uses chezmoi for configuration management and replaces traditional command-line tools with modern alternatives. It includes a complete development environment with editors, browsers, productivity apps, and fonts.
 
+Please have a look at the [Wiki](https://github.com/Johardt/dotfiles/wiki) for more information about the installation process and the included tools.
+
 ## Key components include:
   - Modern CLI tools like bat, eza, and ripgrep for improved functionality and performance.
   - Professional and modern applications such as Neovim, VS Code, Zed, the Ghostty terminal, and Zen browser.
@@ -26,8 +28,8 @@ xcode-select --install
 
 This command will open a dialog asking you to install the command line developer tools. Click "Install" and wait for the installation to complete.
 
-**Additional Requirements**: This dotfiles setup currently requires [1Password](https://1password.com/) for SSH key management and commit signing. Support for other password managers is planned for future releases.
-1Password will be automatically installed during the setup process, but a 1Password account is required to complete the SSH integration.
+**Additional Requirements**: This dotfiles setup currently leans on [1Password](https://1password.com/) for SSH key management and commit signing. Support for other password managers is planned for future releases.
+1Password will be automatically installed during the setup process.
 
 ### Quick Installation
 
@@ -37,4 +39,4 @@ Once the Command Line Tools are installed, execute the following command to init
 sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply Johardt
 ```
 
-And that's it! Although you will want to follow the instructions for the post-installation to complete the setup.
+And that's it! Although you will want to follow the instructions for the [post-installation](https://github.com/Johardt/dotfiles/wiki/Installation#post-installation) to complete the setup.
