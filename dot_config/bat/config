@@ -1,5 +1,5 @@
 --italic-text=always
 --style=plain
 --theme=auto:system
---theme-dark="Catppuccin Macchiato"
---theme-light="Catppuccin Latte"
+--theme-dark="catppuccin-macchiato"
+--theme-light="catppuccin-latte"
