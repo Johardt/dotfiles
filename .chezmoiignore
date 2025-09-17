@@ -3,6 +3,7 @@ README.md
 {{- if not .advancedInstall -}}
 dot_config/fish
 dot_config/helix
+dot_config/btop
 {{- end -}}
 {{- if not .devopsInstall -}}
 dot_config/k9s

@@ -16,7 +16,6 @@ packages:
         - 'zsh-autosuggestions'
         - 'zsh-syntax-highlighting'
         - 'git-delta'
-        - 'lazygit'
         - 'bash'
       casks:
         - 'ghostty'
@@ -41,7 +40,7 @@ packages:
         - 'awscli'
         - 'eksctl'
         - 'common-fate/granted/granted'
-      casks:
+      casks: []
     full:
       brews:
         - 'helix'
@@ -54,5 +53,7 @@ packages:
         - 'gpg'
         - 'gawk'
         - 'btop'
-      casks:
+        - 'pre-commit'
+        - 'lazygit'
+      casks: []
         
