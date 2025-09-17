@@ -1,2 +1,9 @@
 README.md
 *.disabled
+{{- if not .advancedInstall -}}
+dot_config/fish
+dot_config/helix
+{{- end -}}
+{{- if not .devopsInstall -}}
+dot_config/k9s
+{{- end -}}
