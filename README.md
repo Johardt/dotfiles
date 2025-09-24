@@ -5,13 +5,14 @@ This setup uses chezmoi for configuration management and replaces traditional co
 
 Please have a look at the [Wiki](https://github.com/Johardt/dotfiles/wiki) for more information about the installation process and the included tools.
 
-## Key components include:
+## Key features include:
   - Modern CLI tools like bat, eza, and ripgrep for improved functionality and performance.
   - Professional and modern applications such as Neovim, VS Code, Zed, the Ghostty terminal, and Zen browser.
   - Installation of nerd fonts optimal for development and CLI.
   - Automatic theme adaptation for light and dark modes.
   - Secure credential management via 1Password.
   - Modular and idempotent configuration for consistent setups.
+  - Only free and open source tools installed by default
 
 
 ## Installation
@@ -27,9 +28,6 @@ xcode-select --install
 ```
 
 This command will open a dialog asking you to install the command line developer tools. Click "Install" and wait for the installation to complete.
-
-**Additional Requirements**: This dotfiles setup currently leans on [1Password](https://1password.com/) for SSH key management and commit signing. Support for other password managers is planned for future releases.
-1Password will be automatically installed during the setup process.
 
 ### Quick Installation
 
