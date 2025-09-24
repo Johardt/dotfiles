@@ -5,6 +5,6 @@ dot_config/fish
 dot_config/helix
 dot_config/btop
 {{- end -}}
-{{- if not .devopsInstall -}}
+{{- if not .cloudInstall -}}
 dot_config/k9s
 {{- end -}}

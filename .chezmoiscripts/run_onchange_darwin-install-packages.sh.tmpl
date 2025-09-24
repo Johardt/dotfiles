@@ -15,11 +15,11 @@ brew {{ . | quote }}
 {{- range .packages.darwin.minimal.casks }}
 cask {{ . | quote }}
 {{- end }}
-{{- if .devopsInstall }}
-{{- range .packages.darwin.devops.brews }}
+{{- if .cloudInstall }}
+{{- range .packages.darwin.cloud.brews }}
 brew {{ . | quote }}
 {{- end }}
-{{- range .packages.darwin.devops.casks }}
+{{- range .packages.darwin.cloud.casks }}
 cask {{ . | quote }}
 {{- end }}
 {{- end }}

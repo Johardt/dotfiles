@@ -28,7 +28,7 @@ packages:
         - 'font-jetbrains-mono-nerd-font'
         - 'font-geist-mono-nerd-font'
         - 'podman-desktop'
-    devops:
+    cloud:
       brews:
         - 'hashicorp/tap/terraform'
         - 'kubectl'

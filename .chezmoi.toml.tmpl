@@ -4,7 +4,7 @@
 [data]
   # Optional components (prompted during init/apply)
   advancedInstall = {{ promptBool "Install advanced suite of tools (fish, helix, zellij, lima)" }}
-  devopsInstall = {{ promptBool "Install DevOps tools (kubectl + k9s, minikube, terraform, ansible)" }}
+  cloudInstall = {{ promptBool "Install CloudOps tools (kubectl + k9s, minikube, terraform, ansible)" }}
   
 [hooks.read-source-state.pre]
     command = ".local/share/chezmoi/.install-pre-init.sh"

@@ -20,7 +20,7 @@ type = "archive"
 url = "https://github.com/catppuccin/btop/releases/download/1.0.0/themes.tar.gz"
 {{- end }}
 
-{{- if .devopsInstall }}
+{{- if .cloudInstall }}
 [".config/k9s/skins"]
 type = "archive"
 url = "https://github.com/catppuccin/k9s/archive/main.tar.gz"
