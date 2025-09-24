@@ -5,4 +5,4 @@
 
 # Example: Include work-specific configuration for work directories
 # [includeIf "gitdir:~/Projects/work/"]
-#   path = ~/Projects/work/.gitconfig
+#   path = ~/Projects/work/.gitconfig.local

@@ -14,7 +14,6 @@ Please have a look at the [Wiki](https://github.com/Johardt/dotfiles/wiki) for m
   - Modular and idempotent configuration for consistent setups.
   - Only free and open source tools installed by default
 
-
 ## Installation
 
 ### Prerequisites

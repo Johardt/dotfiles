@@ -12,26 +12,31 @@ fi
 # 2) Install taps/brews/casks declaratively via stdin
 cat <<'BUNDLE' | brew bundle --file=/dev/stdin
 {{- range .packages.darwin.minimal.brews }}
-brew {{ . | quote }}
-{{- end }}
+    brew {{ . | quote }}
+{{- end -}}
 {{- range .packages.darwin.minimal.casks }}
-cask {{ . | quote }}
-{{- end }}
+    cask {{ . | quote }}
+{{- end -}}
 {{- if .cloudInstall }}
-{{- range .packages.darwin.cloud.brews }}
-brew {{ . | quote }}
-{{- end }}
-{{- range .packages.darwin.cloud.casks }}
-cask {{ . | quote }}
-{{- end }}
+    {{- range .packages.darwin.cloud.brews }}
+        brew {{ . | quote }}
+    {{- end -}}
+    {{- range .packages.darwin.cloud.casks }}
+        cask {{ . | quote }}
+    {{- end }}
 {{- end }}
 {{- if .advancedInstall }}
-{{- range .packages.darwin.full.brews }}
-brew {{ . | quote }}
+    {{- range .packages.darwin.full.brews }}
+        brew {{ . | quote }}
+    {{- end }}
+    {{- range .packages.darwin.full.casks }}
+        cask {{ . | quote }}
+    {{- end }}
 {{- end }}
-{{- range .packages.darwin.full.casks }}
-cask {{ . | quote }}
-{{- end }}
+{{- if .oppreferred }}
+    {{- range .packages.darwin.oppreferred.casks }}
+        cask {{ . | quote }}
+    {{- end }}
 {{- end }}
 BUNDLE
 
