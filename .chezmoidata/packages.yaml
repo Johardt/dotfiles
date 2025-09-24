@@ -28,6 +28,7 @@ packages:
         - 'font-jetbrains-mono-nerd-font'
         - 'font-geist-mono-nerd-font'
         - 'podman-desktop'
+        - 'secretive'
     cloud:
       brews:
         - 'hashicorp/tap/terraform'
