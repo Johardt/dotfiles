@@ -4,6 +4,7 @@ packages:
       brews:
         - 'git'
         - 'chezmoi'
+        - 'gopass'
         - 'starship'
         - 'neovim'
         - 'luarocks'
@@ -20,8 +21,6 @@ packages:
       casks:
         - 'ghostty'
         - 'zen'
-        - '1password'
-        - '1password-cli'
         - 'raycast'
         - 'zed'
         - 'visual-studio-code'
