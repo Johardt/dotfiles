@@ -17,10 +17,14 @@ if command -v atuin >/dev/null 2>&1; then
 fi
 
 # Load zoxide (smart cd)
-eval "$(zoxide init zsh)"
+if command -v zoxide >/dev/null 2>&1; then
+  eval "$(zoxide init zsh)"
+fi
 
 # Load fzf
-eval "$(fzf --zsh)"
+if command -v fzf >/dev/null 2>&1; then
+  eval "$(fzf --zsh)"
+fi
 
 # FZF config: command + layout + preview
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'

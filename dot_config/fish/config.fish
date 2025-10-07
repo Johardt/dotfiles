@@ -11,8 +11,12 @@ if command -v atuin >/dev/null 2>&1
 end
 
 # Zoxide, fzf
-zoxide init fish | source
-fzf --fish | source
+if command -v zoxide >/dev/null 2>&1
+    zoxide init fish | source
+end
+if command -v fzf >/dev/null 2>&1
+    fzf --fish | source
+end
 
 # Carapace (completion generator)
 if command -v carapace >/dev/null 2>&1
