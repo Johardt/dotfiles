@@ -11,6 +11,11 @@ HISTFILE=~/.zsh_history
 setopt HIST_IGNORE_DUPS HIST_IGNORE_ALL_DUPS HIST_IGNORE_SPACE
 setopt HIST_SAVE_NO_DUPS HIST_REDUCE_BLANKS SHARE_HISTORY EXTENDED_HISTORY
 
+# Load atuin (shell history)
+if command -v atuin >/dev/null 2>&1; then
+  eval "$(atuin init zsh)"
+fi
+
 # Load zoxide (smart cd)
 eval "$(zoxide init zsh)"
 
@@ -64,6 +69,11 @@ if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
   compinit
 else
   compinit -C
+fi
+
+# Load carapace (completion generator)
+if command -v carapace >/dev/null 2>&1; then
+  source <(carapace _carapace)
 fi
 
 # Completion tweaks

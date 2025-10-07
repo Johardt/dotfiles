@@ -55,6 +55,8 @@ packages:
         - 'btop'
         - 'pre-commit'
         - 'lazygit'
+        - 'atuin'
+        - 'carapace'
       casks: []
     oppreferred:
       brews: []
