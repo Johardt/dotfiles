@@ -26,6 +26,7 @@ packages:
         - 'visual-studio-code'
         - 'font-jetbrains-mono-nerd-font'
         - 'font-geist-mono-nerd-font'
+        - 'font-adwaita-mono-nerd-font'
         - 'podman-desktop'
         - 'secretive'
     cloud:
@@ -45,7 +46,6 @@ packages:
       brews:
         - 'helix'
         - 'fish'
-        - 'zellij'
         - 'lima'
         - 'jq'
         - 'git-crypt'
@@ -55,7 +55,6 @@ packages:
         - 'btop'
         - 'pre-commit'
         - 'lazygit'
-        - 'atuin'
         - 'carapace'
       casks: []
     oppreferred:
