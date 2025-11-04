@@ -56,7 +56,9 @@ packages:
         - 'pre-commit'
         - 'lazygit'
         - 'carapace'
-      casks: []
+        - 'atuin'
+      casks:
+        - 'atuin-desktop'
     oppreferred:
       brews: []
       casks:

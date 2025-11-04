@@ -4,4 +4,4 @@ touch ~/.hushlogin
 source ~/.zsh/env.zsh
 
 # Brew path setup
-eval "$($BREW_PREFIX/bin/brew shellenv)"
+eval "$($HOMEBREW_PREFIX/bin/brew shellenv)"

@@ -21,6 +21,7 @@ macos-titlebar-style=tabs
 unfocused-split-opacity = 0.8
 
 shell-integration = detect
+shell-integration-features = ssh-env
 
 # Text navigation (word jumps)
 keybind = alt+left=text:\x1bb

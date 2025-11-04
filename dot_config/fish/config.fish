@@ -18,5 +18,10 @@ if command -v carapace >/dev/null 2>&1
     carapace _carapace | source
 end
 
+# Atuin
+if command -v atuin >/dev/null 2>&1
+    atuin init fish | source
+end
+
 # Starship prompt
 eval (starship init fish)

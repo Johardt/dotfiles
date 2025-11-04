@@ -51,10 +51,10 @@ export FZF_CTRL_R_OPTS=$'
 # Load syntax highlighting (should be before autosuggestions)
 # Should be automatically switched (see https://github.com/Johardt/dotfiles/issues/7)
 source ~/.zsh/catppuccin_latte-zsh-syntax-highlighting.zsh
-source "$BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 # Load autosuggestions
-source "$BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#666666"
