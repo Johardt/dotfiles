@@ -10,6 +10,7 @@ packages:
         - 'luarocks'
         - 'eza'
         - 'fd'
+        - 'jq'
         - 'ripgrep'
         - 'bat'
         - 'fzf'
@@ -18,6 +19,7 @@ packages:
         - 'zsh-syntax-highlighting'
         - 'git-delta'
         - 'bash'
+        - 'cormacrelf/tap/dark-notify'
       casks:
         - 'ghostty'
         - 'zen'
@@ -47,7 +49,6 @@ packages:
         - 'helix'
         - 'fish'
         - 'lima'
-        - 'jq'
         - 'git-crypt'
         - 'glow'
         - 'gpg'
