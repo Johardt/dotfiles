@@ -1,3 +1,5 @@
+# GLOBAL gitignore file. Add files here to automatically ignore them in any git repository.
+
 # IDEs
 .zed/
 
