@@ -1,27 +1,33 @@
 [".config/bat/themes/catppuccin-latte.tmTheme"]
-type = "file"
-url = "https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Latte.tmTheme"
+    type = "file"
+    url = "https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Latte.tmTheme"
 
 [".config/bat/themes/catppuccin-frappe.tmTheme"]
-type = "file"
-url = "https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Frappe.tmTheme"
+    type = "file"
+    url = "https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Frappe.tmTheme"
 
 [".config/bat/themes/catppuccin-macchiato.tmTheme"]
-type = "file"
-url = "https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Macchiato.tmTheme"
+    type = "file"
+    url = "https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Macchiato.tmTheme"
 
 [".config/bat/themes/catppuccin-mocha.tmTheme"]
-type = "file"
-url = "https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme"
+    type = "file"
+    url = "https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme"
+
+[".config/nvim"]
+    type = "archive"
+    url = "https://github.com/LazyVim/starter/archive/refs/heads/main.zip"
+    stripComponents = 1
+    exclude = [".gitignore"]
 
 {{- if .advancedInstall }}
 [".config/btop/themes"]
-type = "archive"
-url = "https://github.com/catppuccin/btop/releases/download/1.0.0/themes.tar.gz"
+    type = "archive"
+    url = "https://github.com/catppuccin/btop/releases/download/1.0.0/themes.tar.gz"
 {{- end }}
 
 {{- if .cloudInstall }}
 [".config/k9s/skins"]
-type = "archive"
-url = "https://github.com/catppuccin/k9s/archive/main.tar.gz"
+    type = "archive"
+    url = "https://github.com/catppuccin/k9s/archive/main.tar.gz"
 {{- end }}
