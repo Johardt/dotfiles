@@ -5,7 +5,7 @@
   # Optional components (prompted during init/apply)
   advancedInstall = {{ promptBool "Install advanced suite of tools (fish, helix, btop, lima...)" }}
   cloudInstall = {{ promptBool "Install CloudOps tools (kubectl + k9s, minikube, terraform, ansible...)" }}
-  oppreferred = {{ promptBool "Do you want to use 1Password as your SSH-Agent (Otherwise, Secretive will be used. If you don't know what this means, say no.)" }}
+  oppreferred = {{ promptBool "Use 1Password as your SSH-Agent (Otherwise, Secretive will be used. If you don't know what this means, say no.)" }}
   
 [hooks.read-source-state.pre]
     command = ".local/share/chezmoi/.install-pre-init.sh"

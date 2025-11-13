@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# ~/.local/bin/theme-links.sh
 # Usage: dark-notify -c ~/.local/bin/theme-links.sh
 # Requires: jq
 
