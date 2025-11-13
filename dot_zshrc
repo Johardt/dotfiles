@@ -8,8 +8,8 @@ source ~/.zsh/local.zsh
 HISTSIZE=5000
 SAVEHIST=5000
 HISTFILE=~/.zsh_history
-setopt HIST_IGNORE_DUPS HIST_IGNORE_ALL_DUPS HIST_IGNORE_SPACE
-setopt HIST_SAVE_NO_DUPS HIST_REDUCE_BLANKS SHARE_HISTORY EXTENDED_HISTORY
+setopt HIST_IGNORE_ALL_DUPS HIST_IGNORE_SPACE
+setopt HIST_REDUCE_BLANKS SHARE_HISTORY EXTENDED_HISTORY
 
 # Load zoxide (smart cd)
 if command -v zoxide >/dev/null 2>&1; then
@@ -34,38 +34,30 @@ export FZF_DEFAULT_OPTS=$'
   --bind="ctrl-u:preview-page-up,ctrl-d:preview-page-down"
 '
 
-export FZF_CTRL_T_OPTS=$'
-  --preview "bat -n --color=always {}"
-  --bind "ctrl-/:change-preview-window(down|hidden|)"
-'
-
-export FZF_ALT_C_OPTS=$'
-  --preview "eza --tree --color=always {} | head -200"
-'
-
-export FZF_CTRL_R_OPTS=$'
-  --preview "echo {} | bat --language=zsh --style=plain --color=always"
-  --preview-window=up:3
-'
+export FZF_CTRL_T_OPTS="$FZF_DEFAULT_OPTS
+  --preview \"bat -n --color=always {}\"
+  --bind \"ctrl-/:change-preview-window(down|hidden|)\"
+"
 
 # Load syntax highlighting (should be before autosuggestions)
 source ~/.zsh/syntax-highlighting-theme.zsh
 source "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 # Load autosuggestions
-source "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#666666"
-
-# Colors
-autoload -Uz colors && colors
+source "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
 # Completion setup (cached, 1-day freshness)
 autoload -Uz compinit
-if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
+local zcomp_cache=~/.zcompdump
+
+# If the cache file doesn't exist OR it's older than 24 hours, rebuild it
+if [[ ! -f "$zcomp_cache" || -n "$zcomp_cache"(#qN.mh+24) ]]; then
   compinit
 else
+  # Otherwise, load from the cache
   compinit -C
 fi
 
