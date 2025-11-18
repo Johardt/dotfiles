@@ -49,7 +49,7 @@
   default = simple
 
 [pull]
-  rebase = false
+  rebase = true
   ff = only
 
 [rebase]
@@ -71,3 +71,7 @@
 [pager]
   branch = false
   tag = false
+
+[alias]
+  gl = log --all --graph --decorate \
+    --pretty=format:'%C(auto)%h %an %ar%C(auto) %D%n%s%n'
