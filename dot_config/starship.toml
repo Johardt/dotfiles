@@ -3,41 +3,9 @@
 format = "${custom.devbox_shell}$all"
 
 right_format="""
-$kubernetes\
-$java\
-$c\
-$cpp\
-$cmake\
-$crystal\
-$dart\
-$elixir\
-$elm\
-$fennel\
-$golang\
-$haskell\
-$haxe\
-$julia\
-$kotlin\
-$lua\
-$meson\
-$nim\
-$ocaml\
-$perl\
-$php\
-$rlang\
-$ruby\
-$rust\
-$scala\
-$swift\
-$zig\
-$scala\
-$python\
-$bun\
-$deno\
-$nodejs\
 $terraform\
-$package\
-$time
+$kubernetes\
+$aws\
 """
 
 [shell]
@@ -45,7 +13,7 @@ disabled = false
 format = "[$indicator]($style) "
 style = "bold purple"
 bash_indicator = ""
-zsh_indicator  = "󰰶"
+zsh_indicator  = ""
 fish_indicator = "󰈺"
 unknown_indicator = ""
 
@@ -57,7 +25,7 @@ style = "bold blue"
 format = '[$symbol$output]($style) '
 
 [time]
-disabled = false
+disabled = true
 format = "[ $time]($style)"
 time_format = "%R"
 utc_time_offset = "local"
@@ -65,6 +33,7 @@ style = "italic dimmed white"
 
 [kubernetes]
 disabled = false
+format = "[$symbol ]($style)"
 
 [terraform]
 symbol = " "
@@ -73,39 +42,49 @@ detect_folders = ['.terraform', 'terraform']
 
 [aws]
 symbol = " "
+format = "[$symbol ]($style)"
 
 [buf]
+disabled = true
 symbol = " "
 format = "[$symbol]($style)"
 
 [bun]
+disabled = true
 symbol = " "
 format = "[$symbol]($style)"
 
 [c]
+disabled = true
 symbol = " "
 format = "[$symbol]($style)"
 
 [cpp]
+disabled = true
 symbol = " "
 format = "[$symbol]($style)"
 
 [cmake]
+disabled = true
 symbol = " "
 format = "[$symbol]($style)"
 
 [conda]
+disabled = true
 symbol = " "
 
 [crystal]
+disabled = true
 symbol = " "
 format = "[$symbol]($style)"
 
 [dart]
+disabled = true
 symbol = " "
 format = "[$symbol]($style)"
 
 [deno]
+disabled = true
 symbol = " "
 format = "[$symbol]($style)"
 
@@ -116,14 +95,17 @@ read_only = " 󰌾"
 symbol = " "
 
 [elixir]
+disabled = true
 symbol = " "
 format = "[$symbol]($style)"
 
 [elm]
+disabled = true
 symbol = " "
 format = "[$symbol]($style)"
 
 [fennel]
+disabled = true
 symbol = " "
 format = "[$symbol]($style)"
 
@@ -140,17 +122,21 @@ symbol = " "
 tag_symbol = '  '
 
 [golang]
+disabled = true
 symbol = " "
 format = "[$symbol]($style)"
 
 [guix_shell]
+disabled = true
 symbol = " "
 
 [haskell]
+disabled = true
 symbol = " "
 format = "[$symbol]($style)"
 
 [haxe]
+disabled = true
 symbol = " "
 format = "[$symbol]($style)"
 
@@ -161,18 +147,22 @@ symbol = " "
 ssh_symbol = " "
 
 [java]
+disabled = true
 symbol = " "
 format = "[$symbol]($style)"
 
 [julia]
+disabled = true
 symbol = " "
 format = "[$symbol]($style)"
 
 [kotlin]
+disabled = true
 symbol = " "
 format = "[$symbol]($style)"
 
 [lua]
+disabled = true
 symbol = " "
 format = "[$symbol]($style)"
 
@@ -180,21 +170,27 @@ format = "[$symbol]($style)"
 symbol = "󰍛 "
 
 [meson]
+disabled = true
 symbol = "󰔷 "
 format = "[$symbol]($style)"
 
 [nim]
+disabled = true
 symbol = "󰆥 "
 format = "[$symbol]($style)"
 
 [nix_shell]
+disabled = true
 symbol = " "
+format = "[$symbol]($style)"
 
 [nodejs]
+disabled = true
 symbol = " "
 format = "[$symbol]($style)"
 
 [ocaml]
+disabled = true
 symbol = " "
 format = '[$symbol(\($switch_indicator$switch_name\) )]($style)'
 
@@ -246,51 +242,64 @@ Void = " "
 Windows = "󰍲 "
 
 [package]
+disabled = true
 symbol = "󰏗 "
 format = '[$symbol$version ]($style)'
 
 [perl]
+disabled = true
 symbol = " "
 format = '[$symbol]($style)'
 
 [php]
+disabled = true
 symbol = " "
 format = '[$symbol]($style)'
 
 [pijul_channel]
+disabled = true
 symbol = " "
 
 [pixi]
+disabled = true
 symbol = "󰏗 "
 
 [python]
+disabled = true
 symbol = " "
 format = '[$symbol]($style)'
 
 [rlang]
+disabled = true
 symbol = "󰟔 "
 format = '[$symbol]($style)'
 
 [ruby]
+disabled = true
 symbol = " "
 format = '[$symbol]($style)'
 
 [rust]
+disabled = true
 symbol = "󱘗 "
 format = '[$symbol]($style)'
 
 [scala]
+disabled = true
 symbol = " "
 format = '[$symbol]($style)'
 
 [swift]
+disabled = true
 symbol = " "
 format = '[$symbol]($style)'
 
 [zig]
+disabled = true
 symbol = " "
 format = '[$symbol]($style)'
 
 [gradle]
+disabled = true
 symbol = " "
 format = '[$symbol]($style)'

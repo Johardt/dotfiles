@@ -66,6 +66,11 @@ if command -v carapace >/dev/null 2>&1; then
   source <(carapace _carapace)
 fi
 
+# Atuin
+if command -v atuin >/dev/null 2>&1; then
+    eval "$(atuin init zsh)"
+fi
+
 # Completion tweaks
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' menu select
