@@ -1,5 +1,7 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
+format = "${custom.devbox_shell}$all"
+
 right_format="""
 $kubernetes\
 $java\
@@ -46,6 +48,13 @@ bash_indicator = ""
 zsh_indicator  = "󰰶"
 fish_indicator = "󰈺"
 unknown_indicator = ""
+
+[custom.devbox_shell]
+symbol = "󰏗 "
+when = 'test "$DEVBOX_SHELL_ENABLED" = "1"'
+command = 'echo $STAGE_NAME'
+style = "bold blue"
+format = '[$symbol$output]($style) '
 
 [time]
 disabled = false
