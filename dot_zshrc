@@ -2,7 +2,9 @@
 source ~/.zsh/aliases.zsh
 source ~/.zsh/keybinds.zsh
 source ~/.zsh/functions.zsh
-source ~/.zsh/local.zsh
+
+# Load local config if it exists (machine-specific overrides)
+[[ -f ~/.zsh/local.zsh ]] && source ~/.zsh/local.zsh
 
 # History configuration
 HISTSIZE=5000
@@ -11,17 +13,10 @@ HISTFILE=~/.zsh_history
 setopt HIST_IGNORE_ALL_DUPS HIST_IGNORE_SPACE
 setopt HIST_REDUCE_BLANKS SHARE_HISTORY EXTENDED_HISTORY
 
-# Load zoxide (smart cd)
-if command -v zoxide >/dev/null 2>&1; then
-  eval "$(zoxide init zsh)"
-fi
+# Navigation
+setopt AUTO_CD AUTO_PUSHD PUSHD_IGNORE_DUPS PUSHD_SILENT
 
-# Load fzf
-if command -v fzf >/dev/null 2>&1; then
-  eval "$(fzf --zsh)"
-fi
-
-# FZF config: command + layout + preview
+# FZF configuration (must be set before fzf init)
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND='fd --type d --strip-cwd-prefix --hidden --follow --exclude .git'
@@ -39,17 +34,18 @@ export FZF_CTRL_T_OPTS="$FZF_DEFAULT_OPTS
   --bind \"ctrl-/:change-preview-window(down|hidden|)\"
 "
 
-# Load syntax highlighting (should be before autosuggestions)
-source ~/.zsh/syntax-highlighting-theme.zsh
-source "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+# Load fzf
+if command -v fzf >/dev/null 2>&1; then
+  eval "$(fzf --zsh)"
+fi
 
-# Load autosuggestions
-ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#666666"
-source "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+# Load zoxide (smart cd)
+if command -v zoxide >/dev/null 2>&1; then
+  eval "$(zoxide init zsh)"
+fi
 
 # Completion setup (cached, 1-day freshness)
+# This MUST come before loading plugins that depend on completion
 autoload -Uz compinit
 local zcomp_cache=~/.zcompdump
 
@@ -61,15 +57,15 @@ else
   compinit -C
 fi
 
-# Load carapace (completion generator)
-if command -v carapace >/dev/null 2>&1; then
-  source <(carapace _carapace)
-fi
+# Load completion menu selection module
+zmodload zsh/complist
 
-# Atuin
-if command -v atuin >/dev/null 2>&1; then
-    eval "$(atuin init zsh)"
-fi
+# Menu completion keybinds (vim-style navigation)
+# Must be set after zmodload zsh/complist
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
 
 # Completion tweaks
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
@@ -80,8 +76,23 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 
-# Navigation
-setopt AUTO_CD AUTO_PUSHD PUSHD_IGNORE_DUPS PUSHD_SILENT
+# Load autosuggestions
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#666666"
+source "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
-# Starship prompt (must be last)
+# Atuin (must be loaded before syntax highlighting)
+if command -v atuin >/dev/null 2>&1; then
+    eval "$(atuin init zsh)"
+fi
+
+# Load syntax highlighting theme and plugin (MUST BE LAST)
+source ~/.zsh/syntax-highlighting-theme.zsh
+source "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+# Remove duplicate PATH entries (some tools like carapace/nix may add duplicates)
+typeset -U path PATH
+
+# Starship prompt (should be at the end)
 eval "$(starship init zsh)"

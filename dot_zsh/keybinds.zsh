@@ -25,17 +25,3 @@ bindkey '^[f' forward-word           # Alt+F for forward word
 
 # Clear screen
 bindkey '^L' clear-screen            # Ctrl+L to clear screen
-
-# Set up menu completion keybinds (vim-style navigation)
-# This will be executed when the menuselect keymap becomes available
-if [[ -n "${terminfo[kcuu1]}" ]]; then
-    # Only set these if we can detect terminal capabilities
-    autoload -U compinit && compinit
-    zmodload zsh/complist
-    
-    # Set up the keybinds for menu selection
-    bindkey -M menuselect 'h' vi-backward-char 2>/dev/null
-    bindkey -M menuselect 'k' vi-up-line-or-history 2>/dev/null
-    bindkey -M menuselect 'l' vi-forward-char 2>/dev/null
-    bindkey -M menuselect 'j' vi-down-line-or-history 2>/dev/null
-fi

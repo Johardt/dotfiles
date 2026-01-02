@@ -20,6 +20,8 @@ packages:
         - 'git-delta'
         - 'bash'
         - 'cormacrelf/tap/dark-notify'
+        - 'openssh'
+        - 'libfido2'
       casks:
         - 'ghostty'
         - 'zen'
@@ -56,7 +58,6 @@ packages:
         - 'btop'
         - 'pre-commit'
         - 'lazygit'
-        - 'carapace'
         - 'atuin'
       casks:
         - 'atuin-desktop'
