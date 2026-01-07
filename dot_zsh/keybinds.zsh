@@ -1,8 +1,4 @@
 # Key bindings for better UX (core zsh functionality)
-# FZF bindings (these are still needed for the actual fzf integration)
-bindkey '^R' fzf-history-widget      # Ctrl+R for fuzzy history search
-bindkey '^T' fzf-file-widget         # Ctrl+T for fuzzy file search
-bindkey '^[c' fzf-cd-widget          # Alt+C for fuzzy directory change
 
 # Accept autosuggestion with Ctrl+Space
 bindkey '^ ' autosuggest-accept

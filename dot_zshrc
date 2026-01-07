@@ -3,9 +3,6 @@ source ~/.zsh/aliases.zsh
 source ~/.zsh/keybinds.zsh
 source ~/.zsh/functions.zsh
 
-# Load local config if it exists (machine-specific overrides)
-[[ -f ~/.zsh/local.zsh ]] && source ~/.zsh/local.zsh
-
 # History configuration
 HISTSIZE=5000
 SAVEHIST=5000
@@ -44,6 +41,11 @@ if command -v zoxide >/dev/null 2>&1; then
   eval "$(zoxide init zsh)"
 fi
 
+# Load mise
+if command -v mise >/dev/null 2>&1; then
+  eval "$(mise activate zsh)"
+fi
+
 # Completion setup (cached, 1-day freshness)
 # This MUST come before loading plugins that depend on completion
 autoload -Uz compinit
@@ -59,6 +61,9 @@ fi
 
 # Load completion menu selection module
 zmodload zsh/complist
+
+# Enable bash completion compatibility
+autoload -U +X bashcompinit && bashcompinit
 
 # Menu completion keybinds (vim-style navigation)
 # Must be set after zmodload zsh/complist
@@ -87,12 +92,13 @@ if command -v atuin >/dev/null 2>&1; then
     eval "$(atuin init zsh)"
 fi
 
+# Load local config if it exists (machine-specific overrides)
+# Must be near the end
+[[ -f ~/.zsh/local.zsh ]] && source ~/.zsh/local.zsh
+
 # Load syntax highlighting theme and plugin (MUST BE LAST)
 source ~/.zsh/syntax-highlighting-theme.zsh
 source "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-
-# Remove duplicate PATH entries (some tools like carapace/nix may add duplicates)
-typeset -U path PATH
 
 # Starship prompt (should be at the end)
 eval "$(starship init zsh)"

@@ -6,6 +6,7 @@ packages:
         - 'chezmoi'
         - 'gopass'
         - 'starship'
+        - 'mise'
         - 'neovim'
         - 'luarocks'
         - 'eza'

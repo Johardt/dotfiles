@@ -1,9 +1,6 @@
 {{- if eq .chezmoi.os "darwin" -}}#!/usr/bin/env bash
 set -euo pipefail
 
-printf "Installing devbox...\n"
-curl -fsSL https://get.jetify.com/devbox | bash
-
 GETTING_STARTED_URL="https://www.chezmoi.io/user-guide/quick-start/"
 
 printf "\nInstallation successful! 🎉\n"
