@@ -49,8 +49,7 @@ alias tf='terraform'
 alias assume=". assume"
 {{ end }}
 
-# Devbox aliases
-alias db='devbox'
-alias dbsh='devbox shell'
-alias dbrun='devbox run'
-alias dbenv='devbox shell --env-file'
+{{ .if .advancedInstall }}
+# Advanced tools
+alias zellij='z'
+{{ end }}

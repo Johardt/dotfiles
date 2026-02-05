@@ -34,6 +34,7 @@ packages:
         - 'font-adwaita-mono-nerd-font'
         - 'podman-desktop'
         - 'secretive'
+        - 'hyperkey'
     cloud:
       brews:
         - 'hashicorp/tap/terraform'
@@ -60,6 +61,7 @@ packages:
         - 'pre-commit'
         - 'lazygit'
         - 'atuin'
+        - 'zellij'
       casks:
         - 'atuin-desktop'
     oppreferred:

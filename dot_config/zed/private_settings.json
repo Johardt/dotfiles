@@ -7,10 +7,54 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "lsp": {
+    "vtsls": {
+      "settings": {
+        "typescript": {
+          "updateImportsOnFileMove": {
+            "enabled": "always"
+          }
+        },
+        "javascript": {
+          "updateImportsOnFileMove": {
+            "enabled": "always"
+          }
+        }
+      },
+      "enable_lsp_tasks": true
+    }
+  },
+  "agent_servers": {
+    "opencode": {
+      "type": "registry"
+    },
+    "claude": {
+      "favorite_models": [],
+      "default_mode": "acceptEdits",
+      "default_model": "sonnet"
+    }
+  },
+  "git_panel": {
+    "tree_view": true
+  },
   "sticky_scroll": {
     "enabled": true
   },
-  "show_edit_predictions": false,
+  "ssh_connections": [
+    {
+      "host": "johardt.me",
+      "username": "joel",
+      "args": [],
+      "projects": [
+        {
+          "paths": [
+            "/home/joel"
+          ]
+        }
+      ]
+    }
+  ],
+  "show_edit_predictions": true,
   "project_panel": {
     "entry_spacing": "comfortable"
   },
@@ -19,29 +63,29 @@
   "title_bar": {
     "show_branch_icon": true
   },
-  "context_servers": {
-    "mcp-server-context7": {
-      "source": "extension",
-      "enabled": true,
-      "settings": {
-        "default_minimum_tokens": "10000"
-      }
-    }
-  },
   "edit_predictions": {
     "disabled_globs": [],
     "mode": "subtle",
     "enabled_in_text_threads": false
   },
   "agent": {
+    "default_profile": "write",
+    "profiles": {
+      
+    },
+    "inline_assistant_model": {
+      "provider": "anthropic",
+      "model": "claude-haiku-4-5-latest"
+    },
+    "always_allow_tool_actions": true,
     "default_model": {
       "provider": "copilot_chat",
-      "model": "gpt-5"
+      "model": "claude-sonnet-4.5"
     },
     "model_parameters": []
   },
   "features": {
-    "edit_prediction_provider": "none"
+    "edit_prediction_provider": "zed"
   },
   "ui_font_family": "GeistMono Nerd Font",
   "buffer_font_family": "GeistMono Nerd Font",
