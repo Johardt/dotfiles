@@ -61,7 +61,7 @@ packages:
         - 'pre-commit'
         - 'lazygit'
         - 'atuin'
-        - 'zellij'
+        - 'tmux'
       casks:
         - 'atuin-desktop'
     oppreferred:

@@ -24,6 +24,11 @@
 [".config/btop/themes"]
     type = "archive"
     url = "https://github.com/catppuccin/btop/releases/download/1.0.0/themes.tar.gz"
+    
+[".config/tmux/plugins/tpm"]
+    type = "archive"
+    url = "https://github.com/tmux-plugins/tpm/archive/refs/heads/master.zip"
+    stripComponents = 1
 {{- end }}
 
 {{- if .cloudInstall }}
