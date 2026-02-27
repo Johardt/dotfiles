@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Ensure color_theme = "catppuccin" is set under [settings] in mise config.
+# Everything else in the file is left untouched.
+
+CURRENT="$(cat)"
+
+# If the setting already exists, output as-is
+if echo "$CURRENT" | grep -qF 'color_theme'; then
+    echo "$CURRENT"
+# If [settings] section exists, append the setting to it
+elif echo "$CURRENT" | grep -qF '[settings]'; then
+    echo "$CURRENT" | sed '/^\[settings\]/a\
+color_theme = "catppuccin"'
+# Otherwise, prepend a new [settings] section
+else
+    printf '[settings]\ncolor_theme = "catppuccin"\n\n%s\n' "$CURRENT"
+fi

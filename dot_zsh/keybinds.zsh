@@ -1,7 +1,8 @@
 # Key bindings for better UX (core zsh functionality)
 
-# Accept autosuggestion with Ctrl+Space
-bindkey '^ ' autosuggest-accept
+# Enable vi mode
+bindkey -v
+export KEYTIMEOUT=10
 
 # Additional useful keybinds
 bindkey '^A' beginning-of-line        # Ctrl+A for beginning of line

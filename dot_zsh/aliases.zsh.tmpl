@@ -1,12 +1,12 @@
 # Chezmoi and editor aliases
 alias cm=chezmoi
-alias vi="nvim -u ~/.config/nvim/init.lua"
+alias vi="nvim"
 
 alias lg=lazygit
 
 # Git aliases
 alias gs="git status --short"
-alias gd="git diff | delta"
+alias gd="git diff"
 alias gap="git add --patch"
 alias gl="git gl"
 alias gcm="git commit -m"
@@ -21,13 +21,9 @@ alias lt='eza -T --color=always --group-directories-first --icons'
 
 # Better cat with syntax highlighting (plain mode for compatibility)
 alias cat='bat --paging=never'
-alias less='bat'
 
 # zoxide aliases (cd replacement)
 alias cdi='zi'   # Interactive cd with fzf
-
-# Better find
-alias find='fd'
 
 # Directory navigation
 alias ..='cd ..'

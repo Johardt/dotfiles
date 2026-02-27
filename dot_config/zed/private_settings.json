@@ -64,31 +64,30 @@
     "show_branch_icon": true
   },
   "edit_predictions": {
+    "provider": "zed",
     "disabled_globs": [],
     "mode": "subtle",
     "enabled_in_text_threads": false
   },
   "agent": {
+    "tool_permissions": {
+      "default": "allow"
+    },
     "default_profile": "write",
     "profiles": {
       
     },
     "inline_assistant_model": {
-      "provider": "anthropic",
-      "model": "claude-haiku-4-5-latest"
-    },
-    "always_allow_tool_actions": true,
-    "default_model": {
       "provider": "copilot_chat",
+      "model": "gpt-5-mini"
+    },
+    "default_model": {
+      "provider": "",
       "model": "claude-sonnet-4.5"
     },
     "model_parameters": []
   },
-  "features": {
-    "edit_prediction_provider": "zed"
-  },
-  "ui_font_family": "GeistMono Nerd Font",
-  "buffer_font_family": "GeistMono Nerd Font",
+  "buffer_font_family": "JetBrainsMono Nerd Font",
   "buffer_font_fallbacks": ["Symbols Nerd Font"],
   "ui_font_size": 16,
   "buffer_font_size": 14,

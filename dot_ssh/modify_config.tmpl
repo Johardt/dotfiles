@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Ensure the SSH agent line is present at the top of ~/.ssh/config
+# Everything else in the file is left untouched.
+
+{{- if .oppreferred }}
+HEADER='Host *
+    IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"'
+{{- else }}
+HEADER='Host *
+	IdentityAgent /Users/joel/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh'
+{{- end }}
+
+# Read current file from stdin
+CURRENT="$(cat)"
+
+# If the file already contains the agent line, output as-is
+if echo "$CURRENT" | grep -qF 'IdentityAgent'; then
+    echo "$CURRENT"
+else
+    # Prepend the header block
+    printf '%s\n\n%s\n' "$HEADER" "$CURRENT"
+fi

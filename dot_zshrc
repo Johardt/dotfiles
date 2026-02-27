@@ -13,60 +13,22 @@ setopt HIST_REDUCE_BLANKS SHARE_HISTORY EXTENDED_HISTORY
 # Navigation
 setopt AUTO_CD AUTO_PUSHD PUSHD_IGNORE_DUPS PUSHD_SILENT
 
-# FZF configuration (must be set before fzf init)
-export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND='fd --type d --strip-cwd-prefix --hidden --follow --exclude .git'
-export FZF_DEFAULT_OPTS=$'
-  --height 40%
-  --layout=reverse
-  --border=rounded
-  --preview "bat --color=always --style=numbers --line-range=:500 {}"
-  --preview-window=right:60%:wrap
-  --bind="ctrl-u:preview-page-up,ctrl-d:preview-page-down"
-'
-
-export FZF_CTRL_T_OPTS="$FZF_DEFAULT_OPTS
-  --preview \"bat -n --color=always {}\"
-  --bind \"ctrl-/:change-preview-window(down|hidden|)\"
-"
-
-# Load fzf
-if command -v fzf >/dev/null 2>&1; then
-  eval "$(fzf --zsh)"
-fi
-
-# Load zoxide (smart cd)
-if command -v zoxide >/dev/null 2>&1; then
-  eval "$(zoxide init zsh --cmd cd)"
-fi
-
-# Load mise
-if command -v mise >/dev/null 2>&1; then
-  eval "$(mise activate zsh)"
-fi
-
-# Completion setup (cached, 1-day freshness)
-# This MUST come before loading plugins that depend on completion
+# ----------------------------
+# Completion (early)
+# ----------------------------
 autoload -Uz compinit
-local zcomp_cache=~/.zcompdump
-
-# If the cache file doesn't exist OR it's older than 24 hours, rebuild it
-if [[ ! -f "$zcomp_cache" || -n "$zcomp_cache"(#qN.mh+24) ]]; then
-  compinit
-else
-  # Otherwise, load from the cache
-  compinit -C
-fi
-
-# Load completion menu selection module
 zmodload zsh/complist
 
-# Enable bash completion compatibility
+local zcomp_cache=~/.zcompdump
+if [[ ! -f $zcomp_cache || $zcomp_cache(#qN.mh+24) ]]; then
+  compinit -d "$zcomp_cache"
+else
+  compinit -C -d "$zcomp_cache"
+fi
+
 autoload -U +X bashcompinit && bashcompinit
 
 # Menu completion keybinds (vim-style navigation)
-# Must be set after zmodload zsh/complist
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
@@ -81,24 +43,61 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 
-# Load autosuggestions
-ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#666666"
-source "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+# ----------------------------
+# FZF (vars before init)
+# ----------------------------
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND='fd --type d --strip-cwd-prefix --hidden --follow --exclude .git'
+export FZF_DEFAULT_OPTS=$'
+  --height 40%
+  --layout=reverse
+  --border=rounded
+  --preview "bat --color=always --style=numbers --line-range=:500 {}"
+  --preview-window=right:60%:wrap
+  --bind="ctrl-u:preview-page-up,ctrl-d:preview-page-down"
+'
+export FZF_CTRL_T_OPTS="$FZF_DEFAULT_OPTS
+  --preview \"bat -n --color=always {}\"
+  --bind \"ctrl-/:change-preview-window(down|hidden|)\"
+"
 
-# Atuin (must be loaded before syntax highlighting)
-if command -v atuin >/dev/null 2>&1; then
-    eval "$(atuin init zsh)"
+if command -v fzf >/dev/null 2>&1; then
+  eval "$(fzf --zsh)"
 fi
 
-# Load local config if it exists (machine-specific overrides)
-# Must be near the end
+# Load zoxide (smart cd)
+if command -v zoxide >/dev/null 2>&1; then
+  eval "$(zoxide init zsh --cmd cd)"
+fi
+
+# Load mise (prepends paths; don't rebuild PATH after this)
+if command -v mise >/dev/null 2>&1; then
+  eval "$(mise activate zsh)"
+fi
+
+# ----------------------------
+# Plugins
+# ----------------------------
+# Autosuggestions
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+[[ -r "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]] && \
+  source "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+bindkey '^ ' autosuggest-accept
+
+# Atuin (must be before syntax highlighting)
+if command -v atuin >/dev/null 2>&1; then
+  eval "$(atuin init zsh)"
+fi
+
+# Local overrides (machine-specific)
 [[ -f ~/.zsh/local.zsh ]] && source ~/.zsh/local.zsh
 
-# Load syntax highlighting theme and plugin (MUST BE LAST)
+# Syntax highlighting (must be last before prompt)
 source ~/.zsh/syntax-highlighting-theme.zsh
-source "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+[[ -r "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] && \
+  source "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
-# Starship prompt (should be at the end)
+# Prompt (last)
 eval "$(starship init zsh)"
