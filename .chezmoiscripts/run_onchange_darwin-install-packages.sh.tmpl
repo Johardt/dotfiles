@@ -40,30 +40,4 @@ cat <<'BUNDLE' | brew bundle --file=/dev/stdin
 {{- end }}
 BUNDLE
 
-{{- if .advancedInstall }}
-# 3) Sync Fisher plugins declared in ~/.config/fish/fish_plugins
-if ! command -v fish >/dev/null 2>&1; then
-  echo "fish not found; skipping Fisher sync (install fish first)." >&2
-  exit 0
-fi
-
-# Pass bootstrap repo into the fish process via env; run real fish code there.
-FISH_BOOTSTRAP=jorgebucaran/fisher fish <<'FISH'
-set -l bootstrap $FISH_BOOTSTRAP
-
-# Install Fisher if missing
-if not functions -q fisher
-  echo "Installing Fisher: $bootstrap"
-  curl -fsSL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source
-  and fisher install $bootstrap
-else
-  echo "Fisher already installed."
-end
-
-# Reconcile plugins from fish_plugins (declarative)
-echo "Syncing plugins from ~/.config/fish/fish_plugins…"
-fisher update
-
-FISH
-{{- end }}
 {{- end -}}

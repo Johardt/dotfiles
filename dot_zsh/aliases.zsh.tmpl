@@ -1,8 +1,14 @@
-# Chezmoi and editor aliases
+# Misc aliases
 alias cm=chezmoi
 alias vi="nvim"
-
 alias lg=lazygit
+alias oc=opencode
+
+# Suffix aliases
+alias -s md=glow
+for ext in json yaml yml toml log; do
+  alias -s $ext=bat
+done
 
 # Git aliases
 alias gs="git status --short"

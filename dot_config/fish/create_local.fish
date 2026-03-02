@@ -1,1 +1,0 @@
-# Put any fish config here that you don't want to share with other machines

@@ -22,7 +22,7 @@ packages:
         - 'bash'
         - 'cormacrelf/tap/dark-notify'
         - 'openssh'
-        - 'libfido2'
+        - 'glow'
       casks:
         - 'ghostty'
         - 'zen'
@@ -50,11 +50,8 @@ packages:
       casks: []
     full:
       brews:
-        - 'helix'
-        - 'fish'
         - 'lima'
         - 'git-crypt'
-        - 'glow'
         - 'gpg'
         - 'gawk'
         - 'btop'
