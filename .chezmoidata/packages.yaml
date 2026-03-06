@@ -47,7 +47,8 @@ packages:
         - 'awscli'
         - 'eksctl'
         - 'common-fate/granted/granted'
-      casks: []
+      casks:
+        - 'lens'
     full:
       brews:
         - 'lima'
