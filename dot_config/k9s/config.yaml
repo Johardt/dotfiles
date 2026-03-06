@@ -1,6 +1,5 @@
 k9s:
   liveViewAutoRefresh: true
   ui:
-    # Should be automatically switched (see https://github.com/Johardt/dotfiles/issues/7)
-    skin: catppuccin-latte
+    skin: active
     logoless: true

@@ -4,6 +4,16 @@ set -euo pipefail
 GETTING_STARTED_URL="https://www.chezmoi.io/user-guide/quick-start/"
 
 printf "\nInstallation successful! 🎉\n"
+
+# Apply theme based on current system appearance
+if [[ "$(defaults read -g AppleInterfaceStyle 2>/dev/null)" == "Dark" ]]; then
+  theme_mode="dark"
+else
+  theme_mode="light"
+fi
+printf "Applying %s theme...\n" "$theme_mode"
+"$HOME/.local/bin/theme-links.py" "$theme_mode"
+
 printf "Ghostty terminal will open now.\n"
 
 # Launch Ghostty (best-effort)
