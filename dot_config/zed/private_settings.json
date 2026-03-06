@@ -1,11 +1,3 @@
-// Zed settings
-//
-// For information on how to configure Zed, see the Zed
-// documentation: https://zed.dev/docs/configuring-zed
-//
-// To see all of Zed's default settings without changing your
-// custom settings, run `zed: open default settings` from the
-// command palette (cmd-shift-p / ctrl-shift-p)
 {
   "lsp": {
     "vtsls": {
@@ -47,9 +39,7 @@
       "args": [],
       "projects": [
         {
-          "paths": [
-            "/home/joel"
-          ]
+          "paths": ["/home/joel"]
         }
       ]
     }
@@ -74,9 +64,7 @@
       "default": "allow"
     },
     "default_profile": "write",
-    "profiles": {
-      
-    },
+    "profiles": {},
     "inline_assistant_model": {
       "provider": "copilot_chat",
       "model": "gpt-5-mini"
@@ -107,13 +95,15 @@
   "git": {
     "inline_blame": {
       "enabled": true
-      //alternatively: "delay_ms": 500
     }
   },
   "autosave": {
     "after_delay": {
       "milliseconds": 500
     }
+  },
+  "file_types": {
+    "YAML+ERB": [".gitlab-ci.yml"]
   },
   "file_scan_exclusions": [
     "**/.git",
