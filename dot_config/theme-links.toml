@@ -1,0 +1,14 @@
+[[mappings]]
+link = "~/.config/zsh/syntax-highlighting-theme.zsh"
+light = "~/.config/themes/latte/zsh-syntax-highlighting.zsh"
+dark = "~/.config/themes/macchiato/zsh-syntax-highlighting.zsh"
+
+[[mappings]]
+link = "~/.config/k9s/skins/active.yaml"
+light = "~/.config/themes/latte/k9s.yaml"
+dark = "~/.config/themes/macchiato/k9s.yaml"
+
+[[mappings]]
+link = "~/.config/helix/themes/active.toml"
+light = "~/.config/themes/latte/helix.toml"
+dark = "~/.config/themes/macchiato/helix.toml"
