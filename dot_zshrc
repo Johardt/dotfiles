@@ -1,7 +1,8 @@
 # Load custom modules
-source ~/.zsh/aliases.zsh
-source ~/.zsh/keybinds.zsh
-source ~/.zsh/functions.zsh
+source ~/.config/zsh/aliases.zsh
+source ~/.config/zsh/keybinds.zsh
+source ~/.config/zsh/functions.zsh
+source ~/.config/zsh/local.zsh
 
 # History configuration
 HISTSIZE=5000
@@ -92,10 +93,10 @@ if command -v atuin >/dev/null 2>&1; then
 fi
 
 # Local overrides (machine-specific)
-[[ -f ~/.zsh/local.zsh ]] && source ~/.zsh/local.zsh
+[[ -f ~/.config/zsh/local.zsh ]] && source ~/.config/zsh/local.zsh
 
 # Syntax highlighting (must be last before prompt)
-source ~/.zsh/syntax-highlighting-theme.zsh
+source ~/.config/zsh/syntax-highlighting-theme.zsh
 [[ -r "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] && \
   source "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
