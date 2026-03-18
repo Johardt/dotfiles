@@ -7,4 +7,5 @@ dot_config/btop
 {{- end -}}
 {{- if not .cloudInstall -}}
 dot_config/k9s
+dot_local/share/ansible
 {{- end -}}

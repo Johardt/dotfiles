@@ -20,7 +20,7 @@ setopt AUTO_CD AUTO_PUSHD PUSHD_IGNORE_DUPS PUSHD_SILENT
 autoload -Uz compinit
 zmodload zsh/complist
 
-local zcomp_cache=~/.zcompdump
+local zcomp_cache=$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION
 if [[ ! -f $zcomp_cache || $zcomp_cache(#qN.mh+24) ]]; then
   compinit -d "$zcomp_cache"
 else
@@ -43,6 +43,7 @@ zstyle ':completion:*' special-dirs true
 zstyle ':completion:*' verbose true
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+zstyle ':completion:*' cache-path "$XDG_CACHE_HOME"/zsh/zcompcache
 
 # ----------------------------
 # FZF (vars before init)

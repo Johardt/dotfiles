@@ -1,0 +1,17 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/usr/bin/env bash
+set -e
+
+# Can be run conditionally with cm hash (only runs if plist file actually changes)
+
+
+PLIST_PATH="$HOME/Library/LaunchAgents/com.user.theme-links.plist"
+
+# 1. Try to unload the existing job, quietly ignoring errors if it doesn't exist
+launchctl unload -w "$PLIST_PATH" 2>/dev/null || true
+
+# 2. Load the (potentially new or updated) job
+launchctl load -w "$PLIST_PATH"
+
+echo "Theme-links launchd agent reloaded."
+{{- end -}}

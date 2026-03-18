@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+    "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.user.theme-links</string>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>
+            /Users/joel/.local/share/mise/shims:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin
+        </string>
+    </dict>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/opt/homebrew/bin/dark-notify</string>
+        <string>-c</string>
+        <string>/Users/joel/.local/bin/theme-links.py $DARKMODE</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true />
+    <key>KeepAlive</key>
+    <true />
+    <key>StandardOutPath</key>
+    <string>/tmp/theme-links.log</string>
+    <key>StandardErrorPath</key>
+    <string>/tmp/theme-links.err</string>
+</dict>
+</plist>
