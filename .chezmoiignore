@@ -9,3 +9,10 @@ dot_config/btop
 dot_config/k9s
 dot_local/share/ansible
 {{- end -}}
+{{- if eq .chezmoi.os "nixos" -}}
+# Files that are configured natively via home manager, or are mac-specific
+Library/
+dot_config/git
+dot_config/zsh
+dot_z*
+{{- end -}}
