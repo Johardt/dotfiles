@@ -76,6 +76,7 @@
 [alias]
   gl = log --all --graph --decorate \
     --pretty=format:'%C(auto)%h %an %ar%C(auto) %D%n%s%n'
-    
+  cleanup = "!git fetch --prune && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch -d"
+
 [user]
   pronouns = he/him
