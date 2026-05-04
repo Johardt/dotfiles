@@ -2,8 +2,7 @@ function cx() {
   if [[ $# -eq 0 ]]; then
     cd ~
   elif [[ $# -eq 1 ]]; then
-    # Using 'z' as in your Fish script
-    z "$1"
+    cd "$1"
   else
     echo "Usage: cx [dir]"
     return 1

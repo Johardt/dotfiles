@@ -59,6 +59,7 @@ packages:
         - 'lazygit'
         - 'atuin'
         - 'tmux'
+        - 'boostsecurityio/tap/bagel'
       casks:
         - 'atuin-desktop'
     oppreferred:

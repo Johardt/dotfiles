@@ -11,9 +11,8 @@
 [gpg "ssh"]
 {{- if .oppreferred }}
   program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
-{{ else }}
-  allowedSignersFile = ~/.config/git/gitallowedsigners
 {{- end }}
+  allowedSignersFile = ~/.config/git/gitallowedsigners
 
 [commit]
   gpgsign = true
