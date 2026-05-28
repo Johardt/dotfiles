@@ -39,6 +39,7 @@ packages:
       brews:
         - 'hashicorp/tap/terraform'
         - 'kubectl'
+        - 'kubectx'
         - 'minikube'
         - 'k9s'
         - 'helm'

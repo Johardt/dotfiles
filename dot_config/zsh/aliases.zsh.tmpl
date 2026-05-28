@@ -30,9 +30,6 @@ alias lt='eza -T --color=always --group-directories-first --icons'
 # Better cat with syntax highlighting (plain mode for compatibility)
 alias cat='bat --paging=never'
 
-# zoxide aliases (cd replacement)
-alias cdi='zi'   # Interactive cd with fzf
-
 # Directory navigation
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -47,6 +44,7 @@ alias reload='source ~/.zshrc'
 {{ if .cloudInstall }}
 # CloudOps related aliases
 alias kc='kubectl'
+alias kx='kubectx'
 alias tf='terraform'
 alias assume=". assume"
 {{ end }}

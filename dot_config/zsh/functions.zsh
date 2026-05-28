@@ -13,3 +13,17 @@ function cx() {
     eza --color=always --group-directories-first --icons
   fi
 }
+
+function kubeconfig-load() {
+  local configs
+  configs=(~/.kube/*.(yml|yaml)(N))
+  export KUBECONFIG="${(j/:/)configs}"
+
+  kubectx
+}
+alias kcfg='kubeconfig-load'
+
+function kunset() {
+    export KUBECONFIG=/dev/null
+    echo "KUBECONFIG disabled"
+}
