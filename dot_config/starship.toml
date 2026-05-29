@@ -33,7 +33,7 @@ style = "italic dimmed white"
 
 [kubernetes]
 disabled = false
-format = "[$symbol ]($style)"
+format = '[$symbol$context( \($profile\))]($style) '
 
 [terraform]
 symbol = " "
@@ -42,7 +42,7 @@ detect_folders = ['.terraform', 'terraform']
 
 [aws]
 symbol = " "
-format = "[$symbol ]($style)"
+format = "on [$symbol($profile )]($style)"
 
 [buf]
 disabled = true
