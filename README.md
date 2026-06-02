@@ -1,18 +1,4 @@
 # Johardt's dotfiles
-A curated collection for macOS developers who prioritize productivity and a clean aesthetic.
-
-This setup uses chezmoi for configuration management and replaces traditional command-line tools with modern alternatives. It includes a complete development environment with editors, browsers, productivity apps, and fonts.
-
-Please have a look at the [Wiki](https://github.com/Johardt/dotfiles/wiki) for more information about the installation process and the included tools.
-
-## Key features include:
-  - Modern CLI tools like bat, eza, and ripgrep for improved functionality and performance.
-  - Professional and modern applications such as Neovim, VS Code, Zed, the Ghostty terminal, and Zen browser.
-  - Installation of nerd fonts optimal for development and CLI.
-  - Automatic theme adaptation for light and dark modes.
-  - Secure credential management via 1Password.
-  - Modular and idempotent configuration for consistent setups.
-  - Only free and open source tools installed by default
 
 ## Installation
 
