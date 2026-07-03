@@ -1,0 +1,48 @@
+# FZF (vars before init)
+set -g fish_greeting
+
+set -gx FZF_DEFAULT_COMMAND 'fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
+set -gx FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
+set -gx FZF_ALT_C_COMMAND 'fd --type d --strip-cwd-prefix --hidden --follow --exclude .git'
+set -gx FZF_DEFAULT_OPTS '
+  --height 40%
+  --layout=reverse
+  --border=rounded
+  --preview "bat --color=always --style=numbers --line-range=:500 {}"
+  --preview-window=right:60%:wrap
+  --bind="ctrl-u:preview-page-up,ctrl-d:preview-page-down"
+'
+set -gx FZF_CTRL_T_OPTS "$FZF_DEFAULT_OPTS
+  --preview \"bat -n --color=always {}\"
+  --bind \"ctrl-/:change-preview-window(down|hidden|)\"
+"
+
+if command -q fzf
+    fzf --fish | source
+end
+
+# Load zoxide (smart cd)
+if command -q zoxide
+    zoxide init fish --cmd cd | source
+end
+
+# Load mise (prepends paths; don't rebuild PATH after this)
+if command -q mise
+    mise activate fish | source
+end
+
+# Atuin
+if command -q atuin
+    atuin init fish | source
+end
+
+# Local overrides (machine-specific)
+set -l local_config "$XDG_CONFIG_HOME/fish/local.fish"
+if test -f "$local_config"
+    source "$local_config"
+end
+
+# Prompt (last)
+if command -q starship
+    starship init fish | source
+end

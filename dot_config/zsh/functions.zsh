@@ -27,3 +27,8 @@ function kunset() {
     export KUBECONFIG=/dev/null
     echo "KUBECONFIG disabled"
 }
+
+function gitlog() {                                                                                                                      default
+    git rev-parse --is-inside-work-tree > /dev/null 2>&1 || { echo "Not a git repository"; return 1; }
+    git --no-pager log --oneline --color=always | fzf --ansi --preview 'git --no-pager show --color=always {1}'
+}

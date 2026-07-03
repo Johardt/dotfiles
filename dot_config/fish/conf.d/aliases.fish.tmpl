@@ -1,0 +1,43 @@
+# Misc aliases
+alias cm=chezmoi
+alias vi=nvim
+alias lg=lazygit
+alias oc=opencode
+alias wget="wget --hsts-file=$XDG_DATA_HOME/wget-hsts"
+alias pw=packwiz
+
+# Git aliases
+alias gs="git status --short"
+alias gd="git diff"
+alias gap="git add --patch"
+alias gl="git gl"
+alias gcm="git commit -m"
+alias gco="git checkout"
+
+# Modern replacements for common commands
+alias ls="eza --color=always --group-directories-first --icons"
+alias ll="eza -la --color=always --group-directories-first --icons"
+alias la="eza -a --color=always --group-directories-first --icons"
+alias lt="eza -T --color=always --group-directories-first --icons"
+
+# Better cat with syntax highlighting (plain mode for compatibility)
+alias cat="bat --paging=never"
+
+# Directory navigation
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+
+# Show hidden files by default
+alias lh="eza -la --color=always --group-directories-first --icons -a"
+
+# Reload shell
+alias reload="exec fish"
+
+{{ if .cloudInstall }}
+# CloudOps related aliases
+alias kc=kubectl
+alias kx=kubectx
+alias tf=terraform
+alias assume="source assume"
+{{ end }}
