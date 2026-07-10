@@ -15,14 +15,18 @@ window-height = 33
 window-width = 118
 confirm-close-surface = false
 cursor-click-to-move = true
+{{- if eq .chezmoi.os "darwin" }}
 macos-titlebar-style=tabs
+{{- end }}
 
 # Performance
 unfocused-split-opacity = 0.8
 
 shell-integration = detect
 shell-integration-features = ssh-env
+{{- if eq .chezmoi.os "darwin" }}
 macos-option-as-alt = false
+{{- end }}
 
 # Text navigation (word jumps)
 keybind = alt+left=text:\x1bb

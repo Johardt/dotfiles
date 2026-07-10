@@ -1,6 +1,6 @@
 packages:
   darwin:
-    minimal:
+    standard:
       brews:
         - 'git'
         - 'chezmoi'
@@ -23,6 +23,16 @@ packages:
         - 'cormacrelf/tap/dark-notify'
         - 'openssh'
         - 'glow'
+        - 'lima'
+        - 'git-crypt'
+        - 'gpg'
+        - 'gawk'
+        - 'btop'
+        - 'pre-commit'
+        - 'lazygit'
+        - 'atuin'
+        - 'tmux'
+        - 'boostsecurityio/tap/bagel'
       casks:
         - 'ghostty'
         - 'zen'
@@ -33,9 +43,11 @@ packages:
         - 'font-geist-mono-nerd-font'
         - 'font-adwaita-mono-nerd-font'
         - 'podman-desktop'
-        - 'secretive'
         - 'hyperkey'
-    cloud:
+        - 'atuin-desktop'
+        - '1password'
+        - '1password-cli'
+    ops:
       brews:
         - 'hashicorp/tap/terraform'
         - 'kubectl'
@@ -49,23 +61,7 @@ packages:
         - 'eksctl'
         - 'common-fate/granted/granted'
       casks: []
-    full:
-      brews:
-        - 'lima'
-        - 'git-crypt'
-        - 'gpg'
-        - 'gawk'
-        - 'btop'
-        - 'pre-commit'
-        - 'lazygit'
-        - 'atuin'
-        - 'tmux'
-        - 'boostsecurityio/tap/bagel'
-      casks:
-        - 'atuin-desktop'
-    oppreferred:
+    secretive:
       brews: []
       casks:
-        - '1password'
-        - '1password-cli'
-        
+        - 'secretive'

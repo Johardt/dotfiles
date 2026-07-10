@@ -2,12 +2,17 @@
 # Ensure the SSH agent line is present at the top of ~/.ssh/config
 # Everything else in the file is left untouched.
 
-{{- if .oppreferred }}
+{{- if eq .chezmoi.os "darwin" -}}
+{{- if .preferSecretive }}
 HEADER='Host *
-    IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"'
+    IdentityAgent ~/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh'
 {{- else }}
 HEADER='Host *
-	IdentityAgent /Users/joel/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh'
+    IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"'
+{{- end -}}
+{{- else if eq .chezmoi.os "linux" }}
+HEADER='Host *
+    IdentityAgent ~/.1password/agent.sock'
 {{- end }}
 
 # Read current file from stdin

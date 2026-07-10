@@ -82,8 +82,8 @@ fi
 # Autosuggestions
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
-[[ -r "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]] && \
-  source "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+[[ -r {{ if eq .chezmoi.os "darwin" }}"$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"{{ else }}"/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh"{{ end }} ]] && \
+  source {{ if eq .chezmoi.os "darwin" }}"$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"{{ else }}"/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh"{{ end }}
 bindkey '^ ' autosuggest-accept
 
 # Atuin (must be before syntax highlighting)
@@ -96,8 +96,8 @@ fi
 
 # Syntax highlighting (must be last before prompt)
 source ~/.config/zsh/syntax-highlighting-theme.zsh
-[[ -r "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] && \
-  source "$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+[[ -r {{ if eq .chezmoi.os "darwin" }}"$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"{{ else }}"/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"{{ end }} ]] && \
+  source {{ if eq .chezmoi.os "darwin" }}"$HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"{{ else }}"/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"{{ end }}
 
 # Prompt (last)
 eval "$(starship init zsh)"
