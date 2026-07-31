@@ -39,5 +39,7 @@ alias reload="exec fish"
 alias kc=kubectl
 alias kx=kubectx
 alias tf=terraform
-alias assume="source assume"
+function assume
+    source (command -s assume.fish) $argv
+end
 {{ end }}

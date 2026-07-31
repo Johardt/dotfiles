@@ -1,4 +1,9 @@
 {
+  "terminal": {
+    "shell": {
+      "program": "fish",
+    },
+  },
   "vim_mode": true,
   "cli_default_open_behavior": "new_window",
   "outline_panel": {
@@ -15,35 +20,30 @@
       "settings": {},
     },
   },
-  "helix_mode": false,
+  "languages": {
+    "TypeScript": {
+      "language_servers": [
+        "typescript-ls",
+        "!vtsls",
+        "!typescript-language-server",
+      ],
+    },
+    "TSX": {
+      "language_servers": [
+        "typescript-ls",
+        "!vtsls",
+        "!typescript-language-server",
+      ],
+    },
+  },
   "lsp": {
-    "vtsls": {
+    "biome": {
       "settings": {
-        "typescript": {
-          "updateImportsOnFileMove": {
-            "enabled": "always",
-          },
-        },
-        "javascript": {
-          "updateImportsOnFileMove": {
-            "enabled": "always",
-          },
-        },
+        "require_config_file": true,
       },
-      "enable_lsp_tasks": true,
     },
   },
-  "agent_servers": {
-    "opencode": {
-      "favorite_config_option_values": {
-        "model": [
-          "portkey-cc/@vertex-ai/anthropic.claude-sonnet-4-6"
-        ]
-      },
-      "favorite_models": ["portkey-cc/@vertex-ai/anthropic.claude-sonnet-4-6"],
-      "type": "registry",
-    },
-  },
+  "helix_mode": false,
   "git_panel": {
     "dock": "left",
     "tree_view": true,
@@ -58,10 +58,24 @@
       "args": [],
       "projects": [
         {
-          "paths": ["/home/joel"],
-        },
-      ],
+          "paths": [
+            "/home/joel"
+          ]
+        }
+      ]
     },
+    {
+      "host": "mc.johardt.me",
+      "username": "joel",
+      "args": [],
+      "projects": [
+        {
+          "paths": [
+            "/srv/minecraft/./"
+          ]
+        }
+      ]
+    }
   ],
   "show_edit_predictions": true,
   "project_panel": {
