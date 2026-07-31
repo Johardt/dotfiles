@@ -1,0 +1,209 @@
+#!/bin/bash
+
+find_sandbox_project() {
+  local dir="$1"
+
+  while [ "$dir" != "/" ]; do
+    for f in "$dir/.mise.toml" "$dir/mise.toml" "$dir/.mise/config.toml"; do
+      if [ -f "$f" ] && grep -qi 'ENABLE_OPENCODE_SANDBOX.*true' "$f" 2>/dev/null; then
+        printf '%s\n' "$dir"
+        return 0
+      fi
+    done
+    dir="$(dirname "$dir")"
+  done
+}
+
+session_key() {
+  local session_tty
+  local pid="${PPID:-$$}"
+  local parent
+
+  for _ in 1 2 3 4 5 6 7 8; do
+    session_tty="$(ps -o tty= -p "$pid" 2>/dev/null | tr -d ' ')"
+    case "$session_tty" in
+      tty*|ttys*) printf 'tty-%s\n' "$(printf '%s' "$session_tty" | md5 -q)"; return 0 ;;
+    esac
+    parent="$(ps -o ppid= -p "$pid" 2>/dev/null | tr -d ' ')"
+    [ -n "$parent" ] || break
+    pid="$parent"
+  done
+
+  printf 'pid-%s\n' "${PPID:-$$}"
+}
+
+safe_remove() {
+  local path="$1"
+
+  case "$path" in
+    ""|/) return 1 ;;
+  esac
+  rm -rf -- "$path"
+}
+
+tty_is_active() {
+  local expected_hash="$1"
+  local tty_name
+
+  while read -r tty_name; do
+    case "$tty_name" in
+      tty*|ttys*)
+        [ "$(printf '%s' "$tty_name" | md5 -q)" = "$expected_hash" ] && return 0
+        ;;
+    esac
+  done < <(ps -axo tty= | tr -d ' ')
+
+  return 1
+}
+
+prune_session_leases() {
+  local session_dir="$1"
+  local session_file session_id tty_hash session_pid
+
+  for session_file in "$session_dir"/*; do
+    [ -f "$session_file" ] || continue
+    session_id="$(basename "$session_file")"
+    case "$session_id" in
+      pid-*)
+        session_pid="${session_id#pid-}"
+        kill -0 "$session_pid" 2>/dev/null || safe_remove "$session_file"
+        ;;
+      tty-*)
+        tty_hash="${session_id#tty-}"
+        tty_is_active "$tty_hash" || safe_remove "$session_file"
+        ;;
+      *) safe_remove "$session_file" ;;
+    esac
+  done
+
+  # Keep leases from crashed non-interactive hooks bounded as a final fallback.
+  find "$session_dir" -type f -mmin +1440 -delete 2>/dev/null || true
+}
+
+opencode_port() {
+  local project_root="${1:-${MISE_PROJECT_ROOT:-$PWD}}"
+
+  python3 -c 'import hashlib, sys; print(10000 + int(hashlib.md5(sys.argv[1].encode()).hexdigest(), 16) % 50000)' "$project_root"
+}
+
+enter_sandbox() {
+  local project_root
+  project_root="$(find_sandbox_project "${MISE_ORIGINAL_CWD:-$PWD}")"
+
+  if [ -z "$project_root" ] || [ "$project_root" = "$HOME" ]; then
+    exit 0
+  fi
+
+  local project_name="$(basename "$project_root")"
+  local vm_name="vm-${project_name}"
+  local vm_cpus="${OPENCODE_VM_CPUS:-2}"
+  local vm_memory="${OPENCODE_VM_MEMORY:-4}"
+  session_dir="${HOME}/.cache/opencode-sandbox-${vm_name}.sessions"
+  lock_dir="${HOME}/.cache/opencode-sandbox-${vm_name}.lock"
+  session_key_value=""
+  mkdir -p "$session_dir" "${HOME}/.cache"
+  session_key_value="$(session_key)"
+  prune_session_leases "$session_dir"
+  session_ready=false
+  printf '%s\n' "$$" > "$session_dir/$session_key_value"
+  trap 'if [ "$session_ready" != true ]; then safe_remove "$session_dir/$session_key_value"; fi; safe_remove "$lock_dir"' EXIT
+
+  local waited=0 lock_pid
+  while ! mkdir "$lock_dir" 2>/dev/null; do
+    lock_pid=""
+    [ -f "$lock_dir/pid" ] && lock_pid="$(cat "$lock_dir/pid" 2>/dev/null || true)"
+    if [ -z "$lock_pid" ] || ! kill -0 "$lock_pid" 2>/dev/null; then
+      safe_remove "$lock_dir"
+    elif [ "$waited" -ge 60 ]; then
+      echo "⚠️ [mise] Sandbox VM is busy in another shell; leaving it unchanged."
+      exit 0
+    else
+      sleep 1
+      waited=$((waited + 1))
+    fi
+  done
+  printf '%s\n' "$$" > "$lock_dir/pid"
+
+  local opencode_port
+  opencode_port="$(opencode_port "$project_root")"
+  export OPENCODE_SERVER_URL="http://localhost:${opencode_port}"
+  echo "🤖 [mise] Initializing sandbox VM '${vm_name}' (${vm_cpus} CPUs, ${vm_memory}GiB RAM)..."
+
+  if ! command -v limactl >/dev/null 2>&1; then
+    echo "❌ Error: 'limactl' is required. Install with: brew install lima"
+    exit 1
+  fi
+
+  if ! limactl list -q | grep -q "^${vm_name}$"; then
+    local lima_template
+    lima_template="$(mktemp)"
+    cat <<'EOF' > "$lima_template"
+mountType: "virtiofs"
+mounts: []
+images:
+  - location: "https://cloud-images.ubuntu.com/releases/26.04/release/ubuntu-26.04-server-cloudimg-arm64.img"
+    arch: "aarch64"
+EOF
+    limactl start --tty=false --name="$vm_name" --cpus="$vm_cpus" --memory="$vm_memory" --mount-only "${project_root}:w" --set ".portForwards[0].guestPort = 4242" --set ".portForwards[0].hostPort = ${opencode_port}" "$lima_template"
+    rm -f "$lima_template"
+  elif ! limactl list "$vm_name" | grep -q "^${vm_name}[[:space:]]*Running"; then
+    limactl start "$vm_name" >/dev/null 2>&1
+  fi
+
+  limactl shell "$vm_name" -- bash -c "for f in '${project_root}/.mise.toml' '${project_root}/mise.toml' '${project_root}/.mise/config.toml'; do if [ -f \"\$f\" ]; then sudo mount --bind /dev/null \"\$f\" 2>/dev/null || true; fi; done"
+  limactl shell "$vm_name" -- bash -c 'export PATH=$HOME/.opencode/bin:$PATH; command -v opencode >/dev/null 2>&1 || curl --connect-timeout 10 --max-time 300 -fsSL https://opencode.ai/install | bash'
+
+  if [ -f "$HOME/.config/opencode/opencode.json" ]; then
+    limactl shell "$vm_name" -- bash -c 'mkdir -p $HOME/.config/opencode'
+    limactl shell "$vm_name" -- bash -c 'cat > $HOME/.config/opencode/opencode.json' < "$HOME/.config/opencode/opencode.json"
+  fi
+
+  limactl shell "$vm_name" -- bash -c "if systemctl --user is-active --quiet opencode-server; then exit 0; elif systemctl --user is-system-running >/dev/null 2>&1; then systemd-run --user --no-block --unit=opencode-server --setenv=PATH=\$HOME/.opencode/bin:/usr/local/bin:/usr/bin:/bin --setenv=REQUESTY_API_KEY='${REQUESTY_API_KEY:-}' --working-directory='${project_root}' \$HOME/.opencode/bin/opencode serve --port 4242 --hostname 0.0.0.0; else cd '${project_root}'; nohup env PATH=\$HOME/.opencode/bin:/usr/local/bin:/usr/bin:/bin REQUESTY_API_KEY='${REQUESTY_API_KEY:-}' \$HOME/.opencode/bin/opencode serve --port 4242 --hostname 0.0.0.0 >/tmp/opencode-server.log 2>&1 </dev/null & fi"
+  for _ in $(seq 1 10); do
+    curl --connect-timeout 1 --max-time 2 -s "$OPENCODE_SERVER_URL/" >/dev/null 2>&1 && break
+    sleep 0.5
+  done
+  echo "✅ Sandboxed environment active!"
+  echo "👉 Connect with: mise run opencode"
+  session_ready=true
+}
+
+leave_sandbox() {
+  [ -n "${MISE_PREVIOUS_DIR:-}" ] || exit 0
+  local project_root="$(find_sandbox_project "$MISE_PREVIOUS_DIR")"
+  [ -n "$project_root" ] && [ "$project_root" != "$HOME" ] || exit 0
+  [ "$(find_sandbox_project "${MISE_ORIGINAL_CWD:-$PWD}")" = "$project_root" ] && exit 0
+
+  local vm_name="vm-$(basename "$project_root")"
+  lock_dir="${HOME}/.cache/opencode-sandbox-${vm_name}.lock"
+  local session_dir="${HOME}/.cache/opencode-sandbox-${vm_name}.sessions"
+  mkdir -p "${HOME}/.cache"
+  local waited=0 lock_pid
+  while ! mkdir "$lock_dir" 2>/dev/null; do
+    lock_pid=""
+    [ -f "$lock_dir/pid" ] && lock_pid="$(cat "$lock_dir/pid" 2>/dev/null || true)"
+    if [ -z "$lock_pid" ] || ! kill -0 "$lock_pid" 2>/dev/null; then safe_remove "$lock_dir"
+    elif [ "$waited" -ge 60 ]; then echo "⚠️ [mise] Sandbox VM is busy in another shell; leaving it running."; exit 0
+    else sleep 1; waited=$((waited + 1)); fi
+  done
+  trap 'safe_remove "$lock_dir"' EXIT
+  printf '%s\n' "$$" > "$lock_dir/pid"
+  mkdir -p "$session_dir"
+  prune_session_leases "$session_dir"
+  local key="$(session_key)"
+  echo "🛑 [mise] Stopping OpenCode server & VM (${vm_name})..."
+  rm -f "$session_dir/$key"
+  if [ -n "$(find "$session_dir" -type f -print -quit 2>/dev/null)" ]; then
+    echo "ℹ️ [mise] Keeping ${vm_name} running for another shell."
+    exit 0
+  fi
+  limactl shell "$vm_name" -- systemctl --user stop opencode-server 2>/dev/null || true
+  limactl stop "$vm_name" 2>/dev/null || true
+}
+
+case "${1:-}" in
+  enter) enter_sandbox ;;
+  leave) leave_sandbox ;;
+  port) opencode_port "${2:-${MISE_PROJECT_ROOT:-$PWD}}" ;;
+  *) printf 'Usage: %s {enter|leave|port [directory]}\n' "$0" >&2; exit 2 ;;
+esac
